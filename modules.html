@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Modules Management - BUDGET</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-primary text-white flex flex-col shrink-0">
+            <div class="p-6 flex items-center gap-3 border-b border-white/10">
+                <div class="size-10 bg-white/20 rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-2xl">account_balance_wallet</span>
+                </div>
+                <div>
+                    <h1 class="font-black text-xl leading-tight tracking-tighter">BUDGET</h1>
+                    <p class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Enterprise</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1">
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="dashboard.html">
+                    <span class="material-symbols-outlined text-xl">dashboard</span>
+                    <span class="font-medium text-sm">Dashboard</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="movements.html">
+                    <span class="material-symbols-outlined text-xl">swap_horiz</span>
+                    <span class="font-medium text-sm">Movements</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="budgets.html">
+                    <span class="material-symbols-outlined text-xl">payments</span>
+                    <span class="font-medium text-sm">Budgets</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="users.html">
+                    <span class="material-symbols-outlined text-xl">group</span>
+                    <span class="font-medium text-sm">Users</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="settings.html">
+                    <span class="material-symbols-outlined text-xl">settings</span>
+                    <span class="font-medium text-sm">Settings</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-white/10">
+                <div class="flex items-center gap-3 p-2">
+                    <img alt="User Profile" class="size-10 rounded-full border-2 border-white/20"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAatnfYa1oS2CC1qHukRwajuRF8NT0B_xrQ0D9T1q4oyz28wcGxdRhyEVa2oiNlOCDi8lQPthxmV0Z9C_4gKUvaZ_mSdtN-JsjMZ8rf0llS7pVTnWFFPdzTd4kyTTBXmTjVH64Q7MQTupJif_L4lh0aTFqpaImuvkd6Ji86gpHY9A4RATVDU9lIJNkXcpTcPMd7hUNndT4GQi2R4oT_cCPSVGSmtARVGsZfp37uS8s15MtCoyimohS-32Ym31dwbtR031eAswY2MHQ" />
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-sm font-semibold truncate">Alex Rivera</p>
+                        <p class="text-xs text-white/50 truncate">Financial Director</p>
+                    </div>
+                    <a href="index.html"
+                        class="material-symbols-outlined text-white/40 hover:text-white transition-colors">logout</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            <!-- Header -->
+            <header
+                class="h-24 flex items-center justify-between px-8 sticky top-0 z-50 bg-white/5 backdrop-blur-sm border-none pt-4">
+                <!-- Left: Global Actions -->
+                <div class="flex items-center gap-4">
+                    <button
+                        class="size-12 flex items-center justify-center text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-2xl relative transition-all hover:scale-110 hover:text-primary">
+                        <span class="material-symbols-outlined text-[32px]">notifications</span>
+                        <span
+                            class="absolute top-3 right-3 size-3 bg-red-500 rounded-full border-2 border-slate-50 dark:border-slate-900"></span>
+                    </button>
+                    <button
+                        class="size-12 flex items-center justify-center text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-2xl transition-all hover:scale-110 hover:text-primary">
+                        <span class="material-symbols-outlined text-[32px]">help</span>
+                    </button>
+                </div>
+
+                <!-- Right: Context indicator -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="flex items-center gap-2 px-5 py-2.5 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl border border-white/60 dark:border-slate-700/60 text-base font-bold text-slate-600 shadow-sm">
+                        <span class="material-symbols-outlined text-[22px] text-primary">event_note</span>
+                        <span>Fiscal Year 2026</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
+                <!-- Page Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div class="space-y-1">
+                        <nav
+                            class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                            <a href="settings.html" class="hover:text-primary transition-colors">Configuración</a>
+                            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                            <span class="text-slate-600 dark:text-slate-200">Gestión de Módulos</span>
+                        </nav>
+                        <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Gestión de Módulos
+                        </h2>
+                        <p class="text-slate-500 dark:text-slate-400 font-medium">Active o desactive las funcionalidades
+                            principales del sistema y gestione sus capacidades operativas.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button
+                            class="bg-primary text-white px-6 py-2.5 rounded-xl font-black text-sm hover:opacity-90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px]">save</span> Guardar Cambios
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="flex items-center gap-8 border-b border-slate-200 dark:border-slate-800">
+                    <a href="users.html"
+                        class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-2 transition-all group">
+                        <span
+                            class="material-symbols-outlined text-lg text-slate-400 group-hover:text-primary">group</span>
+                        Usuarios (Users)
+                    </a>
+                    <a href="roles.html"
+                        class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-2 transition-all group">
+                        <span
+                            class="material-symbols-outlined text-lg text-slate-400 group-hover:text-primary">verified_user</span>
+                        Roles & Permissions
+                    </a>
+                    <a href="modules.html"
+                        class="pb-4 text-sm font-black border-b-2 border-primary text-primary flex items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-lg">view_module</span> Modulos (Modules)
+                    </a>
+                </div>
+
+                <!-- Modules Table -->
+                <div
+                    class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr
+                                    class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+                                    <th
+                                        class="px-6 py-4 text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                        Módulo</th>
+                                    <th
+                                        class="px-6 py-4 text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                        Descripción</th>
+                                    <th
+                                        class="px-6 py-4 text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                        Funcionalidades</th>
+                                    <th
+                                        class="px-6 py-4 text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                        Estado</th>
+                                    <th
+                                        class="px-6 py-4 text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">
+                                        Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                <!-- Dashboard -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                                                <span class="material-symbols-outlined">dashboard</span>
+                                            </div>
+                                            <span class="font-bold text-slate-800 dark:text-slate-200">Dashboard</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-xs">Vista resumida y
+                                            gráficos de rendimiento en tiempo real.</p>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Gráficos</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Reportes</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            <span
+                                                class="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
+                                            Activo
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-5 text-right">
+                                        <button
+                                            class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                            <span
+                                                class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Movements -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                                                <span class="material-symbols-outlined">sync_alt</span>
+                                            </div>
+                                            <span
+                                                class="font-bold text-slate-800 dark:text-slate-200">Movimientos</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-xs">Gestión integral
+                                            de ingresos y egresos de caja.</p>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Crear</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Editar</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Exportar</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            <span
+                                                class="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
+                                            Activo
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-5 text-right">
+                                        <button
+                                            class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                            <span
+                                                class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Budgets -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                                                <span class="material-symbols-outlined">payments</span>
+                                            </div>
+                                            <span
+                                                class="font-bold text-slate-800 dark:text-slate-200">Presupuestos</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-xs">Control de
+                                            límites
+                                            mensuales y alertas automáticas.</p>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Límites</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Alertas</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            <span
+                                                class="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
+                                            Activo
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-5 text-right">
+                                        <button
+                                            class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                            <span
+                                                class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Items -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-10 h-10 rounded-lg bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-600 dark:text-sky-400">
+                                                <span class="material-symbols-outlined">inventory_2</span>
+                                            </div>
+                                            <span class="font-bold text-slate-800 dark:text-slate-200">Items</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-xs">Inventario y
+                                            categorización detallada de productos.</p>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Inventario</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Categorías</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-bold bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                                            <span
+                                                class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+                                            Inactivo
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-5 text-right">
+                                        <button
+                                            class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-slate-200 dark:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                            <span
+                                                class="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Users -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-10 h-10 rounded-lg bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 dark:text-rose-400">
+                                                <span class="material-symbols-outlined">group</span>
+                                            </div>
+                                            <span class="font-bold text-slate-800 dark:text-slate-200">Usuarios</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-xs">Gestión de roles,
+                                            invitaciones y auditoría de accesos.</p>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Roles</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Invitaciones</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Auditoría</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            <span
+                                                class="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
+                                            Activo
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-5 text-right">
+                                        <button
+                                            class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                            <span
+                                                class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Settings -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-10 h-10 rounded-lg bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400">
+                                                <span class="material-symbols-outlined">settings</span>
+                                            </div>
+                                            <span
+                                                class="font-bold text-slate-800 dark:text-slate-200">Configuración</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-xs">Localización,
+                                            moneda del sistema y personalización de marca.</p>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Branding</span>
+                                            <span
+                                                class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold rounded-md">Moneda</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            <span
+                                                class="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
+                                            Activo
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-5 text-right">
+                                        <button
+                                            class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                            <span
+                                                class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Footer Summary -->
+                <div class="mt-6 flex justify-between items-center text-slate-500 dark:text-slate-400 text-sm">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">info</span>
+                        <span>Se recomienda no desactivar el módulo de Usuarios ni Configuración en producción.</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button
+                            class="px-4 py-2 border border-slate-200 dark:border-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-medium">Cancelar</button>
+                        <button
+                            class="px-6 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity font-bold uppercase text-xs tracking-widest">Guardar
+                            Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

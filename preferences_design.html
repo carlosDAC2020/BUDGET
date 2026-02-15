@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinTrack - Preferencias</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-none">FinTrack</h1>
+<p class="text-xs text-slate-500">Gestión Financiera</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-sm font-medium">Transacciones</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium">Reportes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">pie_chart</span>
+<span class="text-sm font-medium">Presupuestos</span>
+</a>
+<div class="pt-4 pb-2 px-3">
+<p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Administración</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary dark:bg-primary/20 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-sm font-medium">Configuración</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Avatar Usuario" data-alt="Portrait of a professional man for user profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmYasTxbLecLY0_IggZKccpMGRdaW-JJrV6-VNG9QnF5zNxTGfZb2QG_HiSRhHckWCiFgvNKt560uJ8ZI59bY7-Xc2d0pq1cfOwU0AzlQ4EiDcdIO9GFiHJWeRDW0HkajJPeVRgUUuAFX5ZOCRbJNUnOKyI0qQFRk4gcmEelJKpyj5A-8JrsGrVs1ZU-ojVpIk3SV-35OeRxg-jPbWQL6aDIAdyrRxp56_X12pwYvEWXElxutT6ETwGSW74aRql1qY4TKynDqSAjU"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium truncate">Carlos Pérez</p>
+<p class="text-xs text-slate-500 truncate">Admin</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">unfold_more</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-10">
+<div class="flex items-center gap-6">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">Configuración del Sistema</h2>
+<div class="relative w-64 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Buscar ajuste..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">help</span>
+</button>
+</div>
+</header>
+<!-- Tabs -->
+<div class="bg-white dark:bg-slate-900 px-8 border-b border-slate-200 dark:border-slate-800">
+<div class="flex gap-8 overflow-x-auto">
+<a class="py-4 text-sm font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors whitespace-nowrap" href="#">Empresa</a>
+<a class="py-4 text-sm font-bold text-primary border-b-2 border-primary whitespace-nowrap" href="#">Preferencias</a>
+<a class="py-4 text-sm font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors whitespace-nowrap" href="#">Seguridad</a>
+<a class="py-4 text-sm font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors whitespace-nowrap" href="#">Notificaciones</a>
+</div>
+</div>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto p-8 max-w-5xl mx-auto w-full space-y-8 pb-32">
+<!-- Localización -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">language</span>
+<h3 class="text-base font-bold text-slate-800 dark:text-white">Localización</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Moneda Principal</label>
+<select class="w-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm focus:border-primary focus:ring-primary">
+<option selected="">COP - Peso Colombiano</option>
+<option>USD - Dólar Estadounidense</option>
+<option>EUR - Euro</option>
+<option>MXN - Peso Mexicano</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Idioma</label>
+<select class="w-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm focus:border-primary focus:ring-primary">
+<option selected="">Español - Colombia</option>
+<option>English - USA</option>
+<option>Português - Brasil</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Zona Horaria</label>
+<select class="w-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm focus:border-primary focus:ring-primary">
+<option selected="">(GMT-05:00) Bogota, Lima, Quito</option>
+<option>(GMT-04:00) La Paz, Caracas</option>
+<option>(GMT-03:00) Buenos Aires, Brasilia</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Visualización -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">visibility</span>
+<h3 class="text-base font-bold text-slate-800 dark:text-white">Visualización</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Formato de Fecha</label>
+<select class="w-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm focus:border-primary focus:ring-primary">
+<option selected="">DD/MM/YYYY (Ej: 31/12/2023)</option>
+<option>MM/DD/YYYY (Ej: 12/31/2023)</option>
+<option>YYYY-MM-DD (Ej: 2023-12-31)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                    Separador de Miles/Decimales
+                                    <span class="material-symbols-outlined text-slate-400 text-sm cursor-help" title="Define cómo se verán las cifras monetarias">info</span>
+</label>
+<div class="grid grid-cols-2 gap-3">
+<label class="relative flex items-center justify-center p-3 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<input checked="" class="hidden peer" name="separator" type="radio"/>
+<div class="text-xs font-medium peer-checked:text-primary">1.234,56</div>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-lg pointer-events-none"></div>
+</label>
+<label class="relative flex items-center justify-center p-3 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<input class="hidden peer" name="separator" type="radio"/>
+<div class="text-xs font-medium peer-checked:text-primary">1,234.56</div>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-lg pointer-events-none"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="flex items-start bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg">
+<div class="flex-1">
+<h4 class="text-sm font-bold text-slate-800 dark:text-white mb-1">Modo Compacto</h4>
+<p class="text-xs text-slate-500 leading-relaxed">Reduce el espaciado en tablas y listas para ver más información en una sola pantalla.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer ml-4">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Reportes Automáticos -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">auto_graph</span>
+<h3 class="text-base font-bold text-slate-800 dark:text-white">Reportes Automáticos</h3>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-3">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Frecuencia de Resumen Financiero</label>
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-full max-w-md">
+<button class="flex-1 py-2 text-xs font-bold rounded-lg transition-all hover:bg-white dark:hover:bg-slate-700">Diario</button>
+<button class="flex-1 py-2 text-xs font-bold bg-white dark:bg-slate-700 shadow-sm rounded-lg text-primary transition-all">Semanal</button>
+<button class="flex-1 py-2 text-xs font-bold rounded-lg transition-all hover:bg-white dark:hover:bg-slate-700">Mensual</button>
+</div>
+<p class="text-xs text-slate-500 mt-1">Recibirás un resumen consolidado de tus ingresos y gastos por correo electrónico.</p>
+</div>
+<div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">mail</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-slate-800 dark:text-white">Email de destino</h4>
+<p class="text-xs text-slate-500">c.perez@empresa.com (Sincronizado con cuenta)</p>
+</div>
+<button class="text-xs font-bold text-primary hover:underline">Cambiar</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Sticky Footer Action -->
+<div class="fixed bottom-0 right-0 left-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-8 py-4 flex justify-end gap-3 z-20">
+<button class="px-5 py-2.5 text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">Cancelar</button>
+<button class="bg-primary text-white px-8 py-2.5 text-sm font-bold rounded-lg hover:shadow-lg hover:shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">save</span>
+                    Guardar Cambios
+                </button>
+</div>
+</main>
+</div>
+</body></html>

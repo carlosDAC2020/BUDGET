@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Budget Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-primary text-white flex flex-col shrink-0">
+            <div class="p-6 flex items-center gap-3 border-b border-white/10">
+                <div class="size-10 bg-white/20 rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-2xl">account_balance_wallet</span>
+                </div>
+                <div>
+                    <h1 class="font-black text-xl leading-tight tracking-tighter">BUDGET</h1>
+                    <p class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Enterprise</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1">
+                <a class="flex items-center gap-3 px-4 py-3 bg-white/10 rounded-lg transition-colors"
+                    href="dashboard.html">
+                    <span class="material-symbols-outlined text-xl">dashboard</span>
+                    <span class="font-medium text-sm">Dashboard</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="movements.html">
+                    <span class="material-symbols-outlined text-xl">swap_horiz</span>
+                    <span class="font-medium text-sm">Movements</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="budgets.html">
+                    <span class="material-symbols-outlined text-xl">payments</span>
+                    <span class="font-medium text-sm">Budgets</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="users.html">
+                    <span class="material-symbols-outlined text-xl">group</span>
+                    <span class="font-medium text-sm">Users</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="settings.html">
+                    <span class="material-symbols-outlined text-xl">settings</span>
+                    <span class="font-medium text-sm">Settings</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-white/10">
+                <div class="flex items-center gap-3 p-2">
+                    <img alt="User Profile" class="size-10 rounded-full border-2 border-white/20"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAatnfYa1oS2CC1qHukRwajuRF8NT0B_xrQ0D9T1q4oyz28wcGxdRhyEVa2oiNlOCDi8lQPthxmV0Z9C_4gKUvaZ_mSdtN-JsjMZ8rf0llS7pVTnWFFPdzTd4kyTTBXmTjVH64Q7MQTupJif_L4lh0aTFqpaImuvkd6Ji86gpHY9A4RATVDU9lIJNkXcpTcPMd7hUNndT4GQi2R4oT_cCPSVGSmtARVGsZfp37uS8s15MtCoyimohS-32Ym31dwbtR031eAswY2MHQ" />
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-sm font-semibold truncate">Alex Rivera</p>
+                        <p class="text-xs text-white/50 truncate">Financial Director</p>
+                    </div>
+                    <a href="index.html"
+                        class="material-symbols-outlined text-white/40 hover:text-white transition-colors">logout</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            <!-- Header -->
+            <header
+                class="h-24 flex items-center justify-between px-8 sticky top-0 z-50 bg-white/5 backdrop-blur-sm border-none pt-4">
+                <!-- Left: Global Actions -->
+                <div class="flex items-center gap-4">
+                    <button
+                        class="size-12 flex items-center justify-center text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-2xl relative transition-all hover:scale-110 hover:text-primary">
+                        <span class="material-symbols-outlined text-[32px]">notifications</span>
+                        <span
+                            class="absolute top-3 right-3 size-3 bg-red-500 rounded-full border-2 border-slate-50 dark:border-slate-900"></span>
+                    </button>
+                    <button
+                        class="size-12 flex items-center justify-center text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-2xl transition-all hover:scale-110 hover:text-primary">
+                        <span class="material-symbols-outlined text-[32px]">help</span>
+                    </button>
+                </div>
+
+                <!-- Right: Context indicator -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="flex items-center gap-2 px-5 py-2.5 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl border border-white/60 dark:border-slate-700/60 text-base font-bold text-slate-600 shadow-sm">
+                        <span class="material-symbols-outlined text-[22px] text-primary">event_note</span>
+                        <span>Fiscal Year 2026</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
+                <!-- KPI Row -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-slate-500 font-medium text-sm">Total Annual Budget</span>
+                            <span
+                                class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">account_balance</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white">$1,250,000</h3>
+                        <div class="mt-4 flex items-center gap-2 text-emerald-600 text-sm font-semibold">
+                            <span class="material-symbols-outlined text-sm">trending_up</span>
+                            <span>+5.2% from last year</span>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-slate-500 font-medium text-sm">Total Expenses to Date</span>
+                            <span
+                                class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">receipt_long</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white">$850,000</h3>
+                        <div class="mt-4 flex items-center gap-2 text-amber-600 text-sm font-semibold">
+                            <span class="material-symbols-outlined text-sm">analytics</span>
+                            <span>Within variance target</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-4 relative z-10">
+                            <span class="text-slate-500 font-medium text-sm">Remaining Budget %</span>
+                            <span
+                                class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">pie_chart</span>
+                        </div>
+                        <div class="flex items-end gap-4 relative z-10">
+                            <h3 class="text-4xl font-black text-primary">68%</h3>
+                            <div class="flex-1 h-3 bg-slate-100 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-primary" style="width: 68%;"></div>
+                            </div>
+                        </div>
+                        <p class="text-slate-500 text-xs mt-3 relative z-10">$400,000 left for Q4 operations</p>
+                        <div class="absolute -right-4 -bottom-4 opacity-5">
+                            <span class="material-symbols-outlined text-[120px]">show_chart</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Breakdown -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Monthly Trends Bar Chart Mock -->
+                    <div
+                        class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h4 class="font-bold text-lg">Monthly Budget vs Actual</h4>
+                                <p class="text-sm text-slate-500">Trends for the last 6 months</p>
+                            </div>
+                            <div class="flex gap-4 text-xs font-semibold">
+                                <div class="flex items-center gap-1.5"><span
+                                        class="size-2.5 rounded-full bg-primary/30"></span><span>Budget</span></div>
+                                <div class="flex items-center gap-1.5"><span
+                                        class="size-2.5 rounded-full bg-primary"></span><span>Actual</span></div>
+                            </div>
+                        </div>
+                        <div class="h-64 flex items-end gap-8 px-4 relative">
+                            <!-- Y-axis guide lines -->
+                            <div class="absolute inset-x-0 top-0 border-t border-slate-100 h-0"></div>
+                            <div class="absolute inset-x-0 top-1/4 border-t border-slate-100 h-0"></div>
+                            <div class="absolute inset-x-0 top-2/4 border-t border-slate-100 h-0"></div>
+                            <div class="absolute inset-x-0 top-3/4 border-t border-slate-100 h-0"></div>
+                            <!-- Mock Bars -->
+                            <div class="flex-1 flex items-end gap-1 group relative">
+                                <div class="w-full bg-primary/20 rounded-t-sm h-[70%]"></div>
+                                <div class="w-full bg-primary rounded-t-sm h-[62%]"></div>
+                                <span
+                                    class="absolute -bottom-6 left-0 right-0 text-center text-[10px] font-bold text-slate-400 group-hover:text-primary">JAN</span>
+                            </div>
+                            <div class="flex-1 flex items-end gap-1 group relative">
+                                <div class="w-full bg-primary/20 rounded-t-sm h-[70%]"></div>
+                                <div class="w-full bg-primary rounded-t-sm h-[85%]"></div>
+                                <span
+                                    class="absolute -bottom-6 left-0 right-0 text-center text-[10px] font-bold text-slate-400 group-hover:text-primary">FEB</span>
+                            </div>
+                            <div class="flex-1 flex items-end gap-1 group relative">
+                                <div class="w-full bg-primary/20 rounded-t-sm h-[75%]"></div>
+                                <div class="w-full bg-primary rounded-t-sm h-[68%]"></div>
+                                <span
+                                    class="absolute -bottom-6 left-0 right-0 text-center text-[10px] font-bold text-slate-400 group-hover:text-primary">MAR</span>
+                            </div>
+                            <div class="flex-1 flex items-end gap-1 group relative">
+                                <div class="w-full bg-primary/20 rounded-t-sm h-[80%]"></div>
+                                <div class="w-full bg-primary rounded-t-sm h-[92%]"></div>
+                                <span
+                                    class="absolute -bottom-6 left-0 right-0 text-center text-[10px] font-bold text-slate-400 group-hover:text-primary">APR</span>
+                            </div>
+                            <div class="flex-1 flex items-end gap-1 group relative">
+                                <div class="w-full bg-primary/20 rounded-t-sm h-[80%]"></div>
+                                <div class="w-full bg-primary rounded-t-sm h-[74%]"></div>
+                                <span
+                                    class="absolute -bottom-6 left-0 right-0 text-center text-[10px] font-bold text-slate-400 group-hover:text-primary">MAY</span>
+                            </div>
+                            <div class="flex-1 flex items-end gap-1 group relative">
+                                <div class="w-full bg-primary/20 rounded-t-sm h-[85%]"></div>
+                                <div class="w-full bg-primary rounded-t-sm h-[90%]"></div>
+                                <span
+                                    class="absolute -bottom-6 left-0 right-0 text-center text-[10px] font-bold text-slate-400 group-hover:text-primary">JUN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Expenses by Classification Pie/Donut Visual -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-lg mb-1">Expenses by Classification</h4>
+                        <p class="text-sm text-slate-500 mb-8">Classification 'Clasificacion' Table</p>
+                        <div class="flex flex-col items-center">
+                            <!-- Visual Ring -->
+                            <div
+                                class="relative size-48 rounded-full border-[18px] border-slate-100 flex items-center justify-center">
+                                <div
+                                    class="absolute inset-0 rounded-full border-[18px] border-transparent border-t-primary border-r-primary/60 border-l-primary/30 rotate-45">
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-slate-900 dark:text-white">$850k</p>
+                                    <p class="text-[10px] font-medium text-slate-400 uppercase tracking-widest">Total
+                                        Spent</p>
+                                </div>
+                            </div>
+                            <div class="w-full mt-8 space-y-3">
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="size-2 rounded-full bg-primary"></span>
+                                        <span class="text-slate-600">Marketing</span>
+                                    </div>
+                                    <span class="font-semibold">$240k</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="size-2 rounded-full bg-primary/60"></span>
+                                        <span class="text-slate-600">Operations</span>
+                                    </div>
+                                    <span class="font-semibold">$310k</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="size-2 rounded-full bg-primary/30"></span>
+                                        <span class="text-slate-600">HR & Admin</span>
+                                    </div>
+                                    <span class="font-semibold">$180k</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="size-2 rounded-full bg-slate-200"></span>
+                                        <span class="text-slate-600">IT Infrastructure</span>
+                                    </div>
+                                    <span class="font-semibold">$120k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row: Alerts & Recent Movements -->
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    <!-- Alerts Section -->
+                    <div class="lg:col-span-1 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-lg">Alerts</h4>
+                            <span
+                                class="px-2 py-1 bg-red-100 text-red-700 text-[10px] font-black rounded uppercase tracking-tighter">Action
+                                Required</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div
+                                class="p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/30 rounded-xl flex gap-3">
+                                <span class="material-symbols-outlined text-red-500 mt-0.5">warning</span>
+                                <div>
+                                    <p class="text-sm font-bold text-red-900 dark:text-red-100">Budget Exceeded</p>
+                                    <p class="text-xs text-red-700 dark:text-red-300 mt-1">IT Infrastructure dept has
+                                        exceeded its quarterly limit by 12%.</p>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/30 rounded-xl flex gap-3">
+                                <span class="material-symbols-outlined text-amber-500 mt-0.5">report_problem</span>
+                                <div>
+                                    <p class="text-sm font-bold text-amber-900 dark:text-amber-100">Threshold Alert</p>
+                                    <p class="text-xs text-amber-700 dark:text-amber-300 mt-1">80% of Marketing budget
+                                        used. Only $48,000 remains for campaign X.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transactions Table -->
+                    <div
+                        class="lg:col-span-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                            <h4 class="font-bold text-lg">Recent Budget Movements</h4>
+                            <button class="text-primary text-sm font-bold hover:underline">View All</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead
+                                    class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs font-bold uppercase">
+                                    <tr>
+                                        <th class="px-6 py-4">Transaction Details</th>
+                                        <th class="px-6 py-4">Department</th>
+                                        <th class="px-6 py-4 text-right">Amount</th>
+                                        <th class="px-6 py-4">Status</th>
+                                        <th class="px-6 py-4">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="size-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600">
+                                                    <span class="material-symbols-outlined text-lg">cloud</span>
+                                                </div>
+                                                <span class="text-sm font-medium">AWS Cloud Services Renewal</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-slate-600">IT Infrastructure</td>
+                                        <td class="px-6 py-4 text-sm font-bold text-right text-red-600">-$12,450.00</td>
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="px-2 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded">Completed</span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-slate-500">Oct 12, 2023</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuración de Notificaciones - FinTrack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#121217] font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white border-r border-gray-200 flex flex-col shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-primary text-base font-bold leading-none">FinTrack</h1>
+<p class="text-gray-500 text-xs font-medium">Gestión Financiera</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">receipt_long</span>
+<span class="text-sm font-medium">Transacciones</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">bar_chart</span>
+<span class="text-sm font-medium">Informes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">account_balance</span>
+<span class="text-sm font-medium">Presupuestos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1">settings</span>
+<span class="text-sm font-medium">Configuración</span>
+</a>
+</nav>
+<div class="p-4 border-t border-gray-100">
+<div class="flex items-center gap-3 px-2 py-2">
+<div class="size-8 rounded-full bg-gray-200 overflow-hidden">
+<img class="size-full object-cover" data-alt="Alex Rivera profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu4D_UYpUxWfMl2Mzzic2jG1pACfspYRv7Yiye0dcRpdp17uad9EarF4wQY8YX3aC__xbxfUNOdGI3DU0DBuw5fhuNU9BqMLyWO5lUPfJrxTMwgoSgwKi2UTBW-wvuE4jlFiO7s-IYHNQYIgiKDmTC7prflaY3UtuKdevPlc-7n-bgv_8TJO91OgBDJpXT6cVmsv4j5TjZ-2bRK7dQfoiWs-e7kfaP05U0io-1CLu4CR_wbjlwIHBF2Ca9LHPmjQz8884T_lfC1cU"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-gray-900 truncate">Alex Rivera</p>
+<p class="text-xs text-gray-500 truncate">Administrador</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col min-w-0 bg-background-light overflow-hidden">
+<!-- Header -->
+<header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-6 flex-1">
+<h2 class="text-lg font-bold text-gray-900 whitespace-nowrap">Configuración del Sistema</h2>
+<div class="max-w-md w-full relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">search</span>
+<input class="w-full bg-gray-100 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Buscar ajustes..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-px bg-gray-200"></div>
+<div class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-1.5 rounded-lg transition-colors">
+<span class="text-sm font-medium text-gray-700">Alex Rivera</span>
+<div class="size-8 rounded-full bg-gray-200">
+<img class="size-full rounded-full object-cover" data-alt="User avatar small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx6vU0HUnmI8R1PQdDJ2hU19up4yvZiRDCGf3I8RHx3eezDnP00lcpbPc5hs1Ur9OrUBhMpXs4BNZYSfKMlg8QNhlmveKbs66yDl62pYsDTLBqv-ciPabDMLYWU8qruJ_GrfXbfyTRiziLTd3lmXY6TKn8pv5w_SLntLT1oilnTPz_7ts_sA7N9GNa-mWOiiu_rfMZLkJCUHsBj4KP6BEMAJfrYcNbTaTpa32H495YfdZHiuYYry8jPvgBpggCly54JTl7BGD_3ks"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Tabs Navigation -->
+<div class="bg-white border-b border-gray-200 px-8 shrink-0">
+<nav class="flex gap-8">
+<a class="py-4 border-b-2 border-transparent text-gray-500 text-sm font-semibold hover:text-gray-700" href="#">Empresa</a>
+<a class="py-4 border-b-2 border-transparent text-gray-500 text-sm font-semibold hover:text-gray-700" href="#">Preferencias</a>
+<a class="py-4 border-b-2 border-transparent text-gray-500 text-sm font-semibold hover:text-gray-700" href="#">Seguridad</a>
+<a class="py-4 border-b-2 border-primary text-primary text-sm font-bold" href="#">Notificaciones</a>
+</nav>
+</div>
+<!-- Scrollable Content -->
+<main class="flex-1 overflow-y-auto p-8">
+<div class="max-w-4xl mx-auto space-y-6 pb-20">
+<!-- Alertas de Presupuesto -->
+<section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="p-6 border-b border-gray-50">
+<h3 class="text-base font-bold text-gray-900">Alertas de Presupuesto</h3>
+<p class="text-sm text-gray-500">Configura avisos automáticos según el nivel de gasto mensual.</p>
+</div>
+<div class="divide-y divide-gray-50">
+<div class="p-6 flex items-center justify-between">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg size-10 flex items-center justify-center">notification_important</span>
+<div>
+<p class="text-sm font-semibold text-gray-900">Alerta al alcanzar el 80%</p>
+<p class="text-xs text-gray-500">Recibe una notificación cuando el gasto llegue al 80% del presupuesto.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg size-10 flex items-center justify-center">warning</span>
+<div>
+<p class="text-sm font-semibold text-gray-900">Alerta al alcanzar el 90%</p>
+<p class="text-xs text-gray-500">Notificación crítica antes de agotar el presupuesto asignado.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg size-10 flex items-center justify-center">error</span>
+<div>
+<p class="text-sm font-semibold text-gray-900">Presupuesto Agotado (100%)</p>
+<p class="text-xs text-gray-500">Aviso inmediato al superar el límite presupuestario establecido.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Reportes Financieros -->
+<section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="p-6 border-b border-gray-50">
+<h3 class="text-base font-bold text-gray-900">Reportes Financieros</h3>
+<p class="text-sm text-gray-500">Recibe informes automatizados en formato PDF directamente en tu correo.</p>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="p-4 border border-gray-100 rounded-lg flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-gray-600">calendar_view_day</span>
+<input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary" type="checkbox"/>
+</div>
+<span class="text-sm font-semibold text-gray-900">Resumen Diario</span>
+<p class="text-xs text-gray-500">Enviado cada mañana a las 8:00 AM.</p>
+</div>
+<div class="p-4 border border-primary/20 bg-primary/5 rounded-lg flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary">calendar_view_week</span>
+<input checked="" class="w-4 h-4 text-primary bg-white border-primary rounded focus:ring-primary" type="checkbox"/>
+</div>
+<span class="text-sm font-semibold text-primary font-bold">Reporte Semanal</span>
+<p class="text-xs text-gray-500">Balance de gastos enviado cada lunes.</p>
+</div>
+<div class="p-4 border border-primary/20 bg-primary/5 rounded-lg flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+<input checked="" class="w-4 h-4 text-primary bg-white border-primary rounded focus:ring-primary" type="checkbox"/>
+</div>
+<span class="text-sm font-semibold text-primary font-bold">Cierre Mensual</span>
+<p class="text-xs text-gray-500">Análisis detallado el primer día del mes.</p>
+</div>
+</div>
+</section>
+<!-- Seguridad y Acceso -->
+<section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="p-6 border-b border-gray-50">
+<h3 class="text-base font-bold text-gray-900">Seguridad y Acceso</h3>
+<p class="text-sm text-gray-500">Mantén tu cuenta protegida con alertas de actividad sospechosa.</p>
+</div>
+<div class="divide-y divide-gray-50">
+<div class="p-6 flex items-center justify-between">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-gray-600 bg-gray-100 p-2 rounded-lg size-10 flex items-center justify-center">devices</span>
+<div>
+<p class="text-sm font-semibold text-gray-900">Nuevo Inicio de Sesión</p>
+<p class="text-xs text-gray-500">Alertar cuando se acceda desde un dispositivo o navegador no reconocido.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-gray-600 bg-gray-100 p-2 rounded-lg size-10 flex items-center justify-center">key</span>
+<div>
+<p class="text-sm font-semibold text-gray-900">Cambio de Contraseña</p>
+<p class="text-xs text-gray-500">Confirmación inmediata tras cualquier modificación en las credenciales.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Canales de Notificación -->
+<section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="p-6 border-b border-gray-50">
+<h3 class="text-base font-bold text-gray-900">Canales de Notificación</h3>
+<p class="text-sm text-gray-500">Elige por qué medios deseas recibir las alertas configuradas.</p>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg border border-gray-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500">mail</span>
+<span class="text-sm font-medium text-gray-700">Correo Electrónico</span>
+</div>
+<input checked="" class="w-5 h-5 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-gray-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500">notifications_active</span>
+<span class="text-sm font-medium text-gray-700">Notificaciones Push (Navegador)</span>
+</div>
+<input checked="" class="w-5 h-5 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-gray-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500">sms</span>
+<span class="text-sm font-medium text-gray-700">Mensajes SMS</span>
+</div>
+<input class="w-5 h-5 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary" type="checkbox"/>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Actions -->
+<footer class="bg-white border-t border-gray-200 p-4 px-8 flex justify-end gap-4 shrink-0 shadow-[0_-4px_12px_rgba(0,0,0,0.02)]">
+<button class="px-6 py-2 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                    Restablecer valores
+                </button>
+<button class="px-8 py-2 text-sm font-bold text-white bg-primary hover:bg-primary/90 rounded-lg transition-all shadow-md shadow-primary/20">
+                    Guardar Cambios
+                </button>
+</footer>
+</div>
+</div>
+</body></html>

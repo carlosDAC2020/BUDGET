@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>BUDGET - Notificaciones</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-primary text-white flex flex-col shrink-0">
+            <div class="p-6 flex items-center gap-3 border-b border-white/10">
+                <div class="size-10 bg-white/20 rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-2xl">account_balance_wallet</span>
+                </div>
+                <div>
+                    <h1 class="font-black text-xl leading-tight tracking-tighter">BUDGET</h1>
+                    <p class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Enterprise</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1">
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="dashboard.html">
+                    <span class="material-symbols-outlined text-xl">dashboard</span>
+                    <span class="font-medium text-sm">Dashboard</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="movements.html">
+                    <span class="material-symbols-outlined text-xl">swap_horiz</span>
+                    <span class="font-medium text-sm">Movements</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="budgets.html">
+                    <span class="material-symbols-outlined text-xl">payments</span>
+                    <span class="font-medium text-sm">Budgets</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                    href="users.html">
+                    <span class="material-symbols-outlined text-xl">group</span>
+                    <span class="font-medium text-sm">Users</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 bg-white/10 rounded-lg transition-colors"
+                    href="settings.html">
+                    <span class="material-symbols-outlined text-xl">settings</span>
+                    <span class="font-medium text-sm">Settings</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-white/10">
+                <div class="flex items-center gap-3 p-2">
+                    <img alt="User Profile" class="size-10 rounded-full border-2 border-white/20"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAatnfYa1oS2CC1qHukRwajuRF8NT0B_xrQ0D9T1q4oyz28wcGxdRhyEVa2oiNlOCDi8lQPthxmV0Z9C_4gKUvaZ_mSdtN-JsjMZ8rf0llS7pVTnWFFPdzTd4kyTTBXmTjVH64Q7MQTupJif_L4lh0aTFqpaImuvkd6Ji86gpHY9A4RATVDU9lIJNkXcpTcPMd7hUNndT4GQi2R4oT_cCPSVGSmtARVGsZfp37uS8s15MtCoyimohS-32Ym31dwbtR031eAswY2MHQ" />
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-sm font-semibold truncate">Alex Rivera</p>
+                        <p class="text-xs text-white/50 truncate">Financial Director</p>
+                    </div>
+                    <a href="index.html"
+                        class="material-symbols-outlined text-white/40 hover:text-white transition-colors">logout</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            <!-- Header -->
+            <header
+                class="h-24 flex items-center justify-between px-8 sticky top-0 z-50 bg-white/5 backdrop-blur-sm border-none pt-4">
+                <!-- Left: Global Actions -->
+                <div class="flex items-center gap-4">
+                    <button
+                        class="size-12 flex items-center justify-center text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-2xl relative transition-all hover:scale-110 hover:text-primary">
+                        <span class="material-symbols-outlined text-[32px]">notifications</span>
+                        <span
+                            class="absolute top-3 right-3 size-3 bg-red-500 rounded-full border-2 border-slate-50 dark:border-slate-900"></span>
+                    </button>
+                    <button
+                        class="size-12 flex items-center justify-center text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-2xl transition-all hover:scale-110 hover:text-primary">
+                        <span class="material-symbols-outlined text-[32px]">help</span>
+                    </button>
+                </div>
+
+                <!-- Right: Context indicator -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="flex items-center gap-2 px-5 py-2.5 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl border border-white/60 dark:border-slate-700/60 text-base font-bold text-slate-600 shadow-sm">
+                        <span class="material-symbols-outlined text-[22px] text-primary">event_note</span>
+                        <span>Fiscal Year 2026</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8 space-y-8 max-w-[1200px] mx-auto w-full">
+                <!-- Page Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div class="space-y-1">
+                        <nav
+                            class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                            <a href="#" class="hover:text-primary transition-colors">Sistema</a>
+                            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                            <span class="text-slate-600 dark:text-slate-200">Configuración General</span>
+                        </nav>
+                        <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">System Settings
+                        </h1>
+                        <p class="text-slate-500 dark:text-slate-400 font-medium">Administra la información de tu
+                            empresa y las preferencias del sistema.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button
+                            class="bg-primary text-white px-6 py-2.5 rounded-xl font-black text-sm hover:opacity-90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px]">save</span> Guardar Todos los Cambios
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="border-b border-slate-200 dark:border-slate-800 flex gap-8">
+                    <a href="settings.html"
+                        class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center gap-2 transition-all group">
+                        <span
+                            class="material-symbols-outlined text-lg text-slate-400 group-hover:text-primary">domain</span>
+                        Empresa
+                    </a>
+                    <a href="settings-preferencias.html"
+                        class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center gap-2 transition-all group">
+                        <span
+                            class="material-symbols-outlined text-lg text-slate-400 group-hover:text-primary">tune</span>
+                        Preferencias
+                    </a>
+                    <a href="settings-seguridad.html"
+                        class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center gap-2 transition-all group">
+                        <span
+                            class="material-symbols-outlined text-lg text-slate-400 group-hover:text-primary">security</span>
+                        Seguridad
+                    </a>
+                    <a href="settings-notificaciones.html"
+                        class="pb-4 text-sm font-black border-b-2 border-primary text-primary flex items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-lg">notifications_active</span> Notificaciones
+                    </a>
+                </div>
+
+                <!-- Sections Container -->
+                <div class="grid grid-cols-1 gap-8">
+                    <!-- Alertas de Presupuesto -->
+                    <section
+                        class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                        <div class="space-y-1">
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                                Alertas de Presupuesto</h3>
+                            <p class="text-xs text-slate-500 font-medium leading-relaxed">Configura avisos automáticos
+                                según el nivel de gasto mensual.</p>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-4">
+                            <!-- Alert 80% -->
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="size-10 bg-white dark:bg-slate-700 rounded-xl shadow-sm flex items-center justify-center text-slate-400">
+                                        <span class="material-symbols-outlined text-[20px]">notifications</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">Alerta al alcanzar
+                                            el 80%</p>
+                                        <p class="text-[10px] text-slate-500 font-medium">Recibe una notificación cuando
+                                            el gasto llegue al 80% del presupuesto.</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" checked class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Alert 90% -->
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="size-10 bg-white dark:bg-slate-700 rounded-xl shadow-sm flex items-center justify-center text-slate-400">
+                                        <span class="material-symbols-outlined text-[20px]">warning</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">Alerta al alcanzar
+                                            el 90%</p>
+                                        <p class="text-[10px] text-slate-500 font-medium">Notificación crítica antes de
+                                            agotar el presupuesto asignado.</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" checked class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Alert 100% -->
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="size-10 bg-white dark:bg-slate-700 rounded-xl shadow-sm flex items-center justify-center text-slate-400">
+                                        <span class="material-symbols-outlined text-[20px]">error</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">Presupuesto Agotado
+                                            (100%)</p>
+                                        <p class="text-[10px] text-slate-500 font-medium">Aviso inmediato al superar el
+                                            límite presupuestario establecido.</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" checked class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Reportes Financieros -->
+                    <section
+                        class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                        <div class="space-y-1">
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                                Reportes Financieros</h3>
+                            <p class="text-xs text-slate-500 font-medium leading-relaxed">Recibe informes automatizados
+                                en formato PDF directamente en tu correo.</p>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+                            <!-- Card: Diario -->
+                            <div
+                                class="relative p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 group cursor-pointer hover:border-primary/20 transition-all">
+                                <div
+                                    class="absolute top-4 right-4 size-5 rounded border border-slate-200 dark:border-slate-700">
+                                </div>
+                                <div
+                                    class="size-10 bg-white dark:bg-slate-700 rounded-xl shadow-sm flex items-center justify-center text-slate-900 dark:text-white mb-4">
+                                    <span class="material-symbols-outlined">calendar_today</span>
+                                </div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                                    Resumen Diario</p>
+                                <p class="text-[10px] text-slate-500 font-medium leading-relaxed mt-2">Enviado cada
+                                    mañana a las 8:00 AM.</p>
+                            </div>
+
+                            <!-- Card: Semanal -->
+                            <div
+                                class="relative p-6 rounded-2xl border-2 border-primary bg-indigo-50/20 dark:bg-indigo-900/10 group cursor-pointer">
+                                <div
+                                    class="absolute top-4 right-4 size-5 rounded bg-primary flex items-center justify-center">
+                                    <span
+                                        class="material-symbols-outlined text-white text-[14px] font-black">done</span>
+                                </div>
+                                <div
+                                    class="size-10 bg-white dark:bg-slate-700 rounded-xl shadow-sm flex items-center justify-center text-primary mb-4 font-black">
+                                    <span class="material-symbols-outlined">reorder</span>
+                                </div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                                    Reporte Semanal</p>
+                                <p class="text-[10px] text-slate-500 font-medium leading-relaxed mt-2">Balance de gastos
+                                    enviado cada lunes.</p>
+                            </div>
+
+                            <!-- Card: Mensual -->
+                            <div
+                                class="relative p-6 rounded-2xl border-2 border-primary bg-indigo-50/20 dark:bg-indigo-900/10 group cursor-pointer">
+                                <div
+                                    class="absolute top-4 right-4 size-5 rounded bg-primary flex items-center justify-center">
+                                    <span
+                                        class="material-symbols-outlined text-white text-[14px] font-black">done</span>
+                                </div>
+                                <div
+                                    class="size-10 bg-white dark:bg-slate-700 rounded-xl shadow-sm flex items-center justify-center text-primary mb-4 font-black">
+                                    <span class="material-symbols-outlined">event</span>
+                                </div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                                    Cierre Mensual</p>
+                                <p class="text-[10px] text-slate-500 font-medium leading-relaxed mt-2">Análisis
+                                    detallado el primer día del mes.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Seguridad y Acceso -->
+                    <section
+                        class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                        <div class="space-y-1">
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                                Seguridad y Acceso</h3>
+                            <p class="text-xs text-slate-500 font-medium leading-relaxed">Mantén tu cuenta protegida con
+                                alertas de actividad sospechosa.</p>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-100 dark:border-slate-800">
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="size-10 bg-white dark:bg-slate-700 rounded-xl shadow-sm flex items-center justify-center text-slate-400">
+                                        <span class="material-symbols-outlined text-[20px]">login</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">Nuevo Inicio de
+                                            Sesión</p>
+                                        <p class="text-[10px] text-slate-500 font-medium">Recibe un aviso cada vez que
+                                            se acceda a tu cuenta desde un nuevo navegador.</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" checked class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="pt-12 flex items-center justify-end gap-6 pb-24">
+                    <button class="text-sm font-bold text-slate-500 hover:text-slate-700 transition-colors">Restablecer
+                        valores</button>
+                    <button
+                        class="bg-[#1a237e] text-white px-10 py-3 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-xl shadow-blue-900/20 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]">save</span> Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
