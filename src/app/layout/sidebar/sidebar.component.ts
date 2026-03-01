@@ -23,26 +23,31 @@ import { RouterModule } from '@angular/router';
               <p class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Enterprise</p>
           </div>
       </div>
-      <nav class="flex-1 px-4 py-6 space-y-1">
-          <a routerLink="/dashboard" routerLinkActive="bg-white/10" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors">
-              <span class="material-symbols-outlined !text-xl">dashboard</span>
-              <span class="font-medium text-sm">Dashboard</span>
+      <nav class="flex-1 px-4 py-6 space-y-2">
+          <a routerLink="/dashboard" routerLinkActive="active bg-white/15 text-white shadow-sm scale-[1.02]" 
+              class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-white/60 hover:text-white hover:bg-white/5">
+              <span class="material-symbols-outlined !text-xl opacity-80 group-[.active]:opacity-100">grid_view</span>
+              <span class="font-bold text-sm tracking-tight">Dashboard</span>
           </a>
-          <a routerLink="/movements" routerLinkActive="bg-white/10" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-              <span class="material-symbols-outlined !text-xl">swap_horiz</span>
-              <span class="font-medium text-sm">Panel principal</span>
+          <a routerLink="/movements" routerLinkActive="active bg-white/15 text-white shadow-sm scale-[1.02]" 
+              class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-white/60 hover:text-white hover:bg-white/5">
+              <span class="material-symbols-outlined !text-xl opacity-80 group-[.active]:opacity-100">account_balance</span>
+              <span class="font-bold text-sm tracking-tight">Panel principal</span>
           </a>
-          <a routerLink="/budgets" routerLinkActive="bg-white/10" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-              <span class="material-symbols-outlined !text-xl">payments</span>
-              <span class="font-medium text-sm">Budgets</span>
+          <a routerLink="/budgets" routerLinkActive="active bg-white/15 text-white shadow-sm scale-[1.02]" 
+              class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-white/60 hover:text-white hover:bg-white/5">
+              <span class="material-symbols-outlined !text-xl opacity-80 group-[.active]:opacity-100">payments</span>
+              <span class="font-bold text-sm tracking-tight">Presupuestos</span>
           </a>
-          <a routerLink="/users" routerLinkActive="bg-white/10" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-              <span class="material-symbols-outlined !text-xl">group</span>
-              <span class="font-medium text-sm">Users</span>
+          <a routerLink="/users" routerLinkActive="active bg-white/15 text-white shadow-sm scale-[1.02]" 
+              class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-white/60 hover:text-white hover:bg-white/5">
+              <span class="material-symbols-outlined !text-xl opacity-80 group-[.active]:opacity-100">group</span>
+              <span class="font-bold text-sm tracking-tight">Usuarios</span>
           </a>
-          <a routerLink="/settings" routerLinkActive="bg-white/10" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-              <span class="material-symbols-outlined !text-xl">settings</span>
-              <span class="font-medium text-sm">Settings</span>
+          <a routerLink="/settings" routerLinkActive="active bg-white/15 text-white shadow-sm scale-[1.02]" 
+              class="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-white/60 hover:text-white hover:bg-white/5">
+              <span class="material-symbols-outlined !text-xl opacity-80 group-[.active]:opacity-100">settings</span>
+              <span class="font-bold text-sm tracking-tight">Configuración</span>
           </a>
       </nav>
       <div class="p-4 border-t border-white/10">
