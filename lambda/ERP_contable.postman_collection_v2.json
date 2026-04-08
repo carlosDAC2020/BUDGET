@@ -1,0 +1,1139 @@
+{
+  "info": {
+    "_postman_id": "46aee55a-91cf-40f7-9107-c3f61730dbdd",
+    "name": "ERP_contable",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43695966"
+  },
+  "item": [
+    {
+      "name": "lambda tenants",
+      "item": [
+        {
+          "name": "aws - consultar listado empresas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "core",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas",
+              "protocol": "https",
+              "host": [
+                "49eu4ce452",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "tenants",
+                "empresas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - Desactivar empresa",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "core",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas/2/status",
+              "protocol": "https",
+              "host": [
+                "49eu4ce452",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "tenants",
+                "empresas",
+                "2",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - actualizar empresa",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "core",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n        \"nit\": \"123456789\",\r\n        \"nombre\": \"Calicanto\",\r\n        \"direccion\": \"las palmas cartagena 1103 B\",\r\n        \"telefono\": \"3102458563\",\r\n        \"email\": \"jorgep.agamez@hotmail.com\",\r\n        \"moneda_base\": \"COP\",\r\n        \"is_active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas/2",
+              "protocol": "https",
+              "host": [
+                "49eu4ce452",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "tenants",
+                "empresas",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - consultar empresa por id",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas/1",
+              "protocol": "https",
+              "host": [
+                "49eu4ce452",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "tenants",
+                "empresas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - crear empresa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "core",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nit\": \"123456789\",\r\n  \"nombre\": \"Calicanto\",\r\n  \"schema_name\": \"Calicanto\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas",
+              "protocol": "https",
+              "host": [
+                "49eu4ce452",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "tenants",
+                "empresas"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "lambda contabilidad",
+      "item": [
+        {
+          "name": "aws - desactivar cuenta puc",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_cuenta\":3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/cuentas/desactivar",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "cuentas",
+                "desactivar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - listado cuentas puc",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/cuentas",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "cuentas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - update de cuentas puc",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"codigo\": \"12\",\r\n    \"nombre\": \"test\",\r\n    \"tipo\": \"activo\",\r\n    \"nivel\": 1,\r\n    \"id_padre\": 10,\r\n    \"id_cuenta\":3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/cuentas",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "cuentas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - crear periodos contables",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"anio\" : 2026,\r\n    \"mes\": 4,\r\n    \"fechaInicio\": \"01/04/2026\",\r\n    \"fechaFin\": \"01/05/2026\",\r\n    \"cerrado\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/periodos",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "periodos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - creacion de cuentas puc",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"codigo\": \"10\",\r\n    \"nombre\": \"test\",\r\n    \"tipo\": \"activo\",\r\n    \"nivel\": 1,\r\n    \"id_padre\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/cuentas",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "cuentas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - cerrar periodos contables",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_periodo\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/periodos/cerrar",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "periodos",
+                "cerrar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - listar periodos contables",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/periodos",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "periodos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - crear comprobante",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tipo\": \"test\",\r\n    \"numero\": \"12233\",\r\n    \"fecha\" : \"01/04/2026\",\r\n    \"descripcion\": \"test\",\r\n    \"id_periodo\": 1,\r\n    \"estado\": \"BORRADOR\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/comprobantes",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "comprobantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - buscar comprobante por id",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/comprobantes/1",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "comprobantes",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - listar comprobantes ",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/comprobantes",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "comprobantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - crear asiento ",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_comprobante\": 1,\r\n     \"id_cuenta\": 1,\r\n     \"id_tercero\": 1,\r\n     \"id_centro\": 1,\r\n     \"debe\": 100,\r\n     \"haber\": 100,\r\n     \"moneda\": \"COP\",\r\n     \"tasa\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/asientos",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "asientos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - generar balance de prueba",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_comprobante\": 1,\r\n     \"id_cuenta\": 1,\r\n     \"id_tercero\": 1,\r\n     \"id_centro\": 1,\r\n     \"debe\": 100,\r\n     \"haber\": 100,\r\n     \"moneda\": \"COP\",\r\n     \"tasa\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://3uhc3rkqke.execute-api.us-east-1.amazonaws.com/contable/reportes/balance-prueba",
+              "protocol": "https",
+              "host": [
+                "3uhc3rkqke",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "contable",
+                "reportes",
+                "balance-prueba"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "lambda seguridad",
+      "item": [
+        {
+          "name": "aws - lista de roles",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/roles",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - crear roles",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"prueba\",\r\n    \"descripcion\": \"persona encargada de atender en el negocio\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/roles",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - actualizar roles",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\" : 1,\r\n    \"nombre\": \"admin\",\r\n    \"descripcion\": \"persona encargada administrar los negocios\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/roles",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - asignar  modulos a rol",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"moduleIds\" : [1,2,3]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/roles/1/asign",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "roles",
+                "1",
+                "asign"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - crear modulo",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"inventario\",\r\n    \"is_active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/module",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "module"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - lista de modulo",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/module",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "module"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - actualizar modulo",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"contable\",\r\n    \"is_active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/module",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "module"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws - listado de modulos x role",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/roles/1/modules",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "roles",
+                "1",
+                "modules"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws -crear usuarios",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cognito_sub\": \"\",\r\n    \"nombre\": \"Jorge\",\r\n    \"apellido\": \"Parra\",\r\n    \"email\": \"jorgep.agamez@hotmail.com\",\r\n    \"id_rol\": 1,\r\n    \"id_empresa\": 2,\r\n    \"is_active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/user",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws -Actualizar usuarios",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"cognito_sub\": \"\",\r\n    \"nombre\": \"Jorge David\",\r\n    \"apellido\": \"Parra Agamez\",\r\n    \"email\": \"jorgep.agamez@hotmail.com\",\r\n    \"id_rol\": 1,\r\n    \"id_empresa\": 2,\r\n    \"is_active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/user",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws -listar usuarios x empresa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"cognito_sub\": \"\",\r\n    \"nombre\": \"Jorge David\",\r\n    \"apellido\": \"Parra Agamez\",\r\n    \"email\": \"jorgep.agamez@hotmail.com\",\r\n    \"id_rol\": 1,\r\n    \"id_empresa\": 2,\r\n    \"is_active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/empresa/2/user",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "empresa",
+                "2",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aws -buscar usuarios cognito",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-schema",
+                "value": "Calicanto",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://g7mwf3tgf7.execute-api.us-east-1.amazonaws.com/security/user/1/cognito",
+              "protocol": "https",
+              "host": [
+                "g7mwf3tgf7",
+                "execute-api",
+                "us-east-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "security",
+                "user",
+                "1",
+                "cognito"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "lambda facturación",
+      "item": []
+    },
+    {
+      "name": "lambda inventario",
+      "item": []
+    },
+    {
+      "name": "lambda auditoria",
+      "item": []
+    },
+    {
+      "name": "lambda autenticacion",
+      "item": []
+    },
+    {
+      "name": "lambda reportes",
+      "item": []
+    }
+  ]
+}

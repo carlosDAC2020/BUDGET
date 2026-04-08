@@ -1,0 +1,350 @@
+{
+  "info": {
+    "_postman_id": "46aee55a-91cf-40f7-9107-c3f61730dbdd",
+    "name": "ERP_contable",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43695966"
+  },
+  "item": [
+    {
+      "name": "Consultar listado de empresas",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"routeKey\": \"GET /empresas/{id}\",\r\n  \"requestContext\": {\r\n    \"http\": {\r\n      \"method\": \"GET\",\r\n      \"path\": \"/empresas/1\"\r\n    },\r\n    \"authorizer\": {\r\n        \"schema\": \"Calicanto\"\r\n    }\r\n  },\r\n  \"pathParameters\": {\r\n    \"id\": \"1\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/2015-03-31/functions/function/invocations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "2015-03-31",
+            "functions",
+            "function",
+            "invocations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear empresa",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-schema",
+            "value": "Calicanto",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rawPath\": \"/empresas\",\r\n  \"requestContext\": {\r\n    \"http\": {\r\n      \"method\": \"POST\",\r\n      \"path\": \"/empresas\"\r\n    },\r\n    \"authorizer\": {\r\n        \"schema\": \"Calicanto\"\r\n    }\r\n  },\r\n  \"body\": \"{\\\"nit\\\":\\\"123456789\\\",\\\"nombre\\\":\\\"Calicanto\\\",\\\"schema_name\\\":\\\"Calicanto\\\"}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/2015-03-31/functions/function/invocations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "2015-03-31",
+            "functions",
+            "function",
+            "invocations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Consultar empresa por id",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"version\": \"2.0\",\r\n  \"rawPath\": \"/empresas/{id}\",\r\n  \"rawQueryString\": \"\",\r\n  \"requestContext\": {\r\n    \"http\": {\r\n      \"method\": \"GET\",\r\n      \"path\": \"/empresas/2\"\r\n    },\r\n    \"authorizer\": {\r\n      \"schema\": \"Calicanto\"\r\n    }\r\n  },\r\n  \"pathParameters\": {\r\n    \"id\": \"2\"\r\n  },\r\n  \"body\": null,\r\n  \"isBase64Encoded\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/2015-03-31/functions/function/invocations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "2015-03-31",
+            "functions",
+            "function",
+            "invocations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Desactivar empresa por id",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"version\": \"2.0\",\r\n  \"rawPath\": \"/empresas/{id}/status\",\r\n  \"rawQueryString\": \"\",\r\n  \"requestContext\": {\r\n    \"http\": {\r\n      \"method\": \"PATCH\",\r\n      \"path\": \"/empresas/2/status\"\r\n    },\r\n    \"authorizer\": {\r\n      \"schema\": \"Calicanto\"\r\n    }\r\n  },\r\n  \"pathParameters\": {\r\n    \"id\": \"2\"\r\n  },\r\n  \"body\": null,\r\n  \"isBase64Encoded\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/2015-03-31/functions/function/invocations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "2015-03-31",
+            "functions",
+            "function",
+            "invocations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar empresa por id",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"version\": \"2.0\",\r\n  \"rawPath\": \"/empresas/{id}\",\r\n  \"rawQueryString\": \"\",\r\n  \"requestContext\": {\r\n    \"http\": {\r\n      \"method\": \"PUT\",\r\n      \"path\": \"/empresas/2\"\r\n    },\r\n    \"authorizer\": {\r\n      \"schema\": \"Calicanto\"\r\n    }\r\n  },\r\n  \"pathParameters\": {\r\n    \"id\": \"2\"\r\n  },\r\n  \"body\": \"{\\\"nit\\\":\\\"123456789\\\",\\\"nombre\\\":\\\"Calicanto\\\",\\\"direccion\\\":\\\"las palmas cartagena 1103 B\\\",\\\"telefono\\\":\\\"3102458563\\\",\\\"email\\\":\\\"jorgep.agamez@hotmail.com\\\",\\\"moneda_base\\\":\\\"COP\\\",\\\"is_active\\\":\\\"true\\\"}\",\r\n  \"isBase64Encoded\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/2015-03-31/functions/function/invocations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "2015-03-31",
+            "functions",
+            "function",
+            "invocations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aws - consultar empresa por id",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-schema",
+            "value": "Calicanto",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas/1",
+          "protocol": "https",
+          "host": [
+            "49eu4ce452",
+            "execute-api",
+            "us-east-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            "tenants",
+            "empresas",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aws - crear empresa",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-schema",
+            "value": "core",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nit\": \"123456789\",\r\n  \"nombre\": \"Calicanto\",\r\n  \"schema_name\": \"Calicanto\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas",
+          "protocol": "https",
+          "host": [
+            "49eu4ce452",
+            "execute-api",
+            "us-east-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            "tenants",
+            "empresas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aws - consultar listado empresas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-schema",
+            "value": "core",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas",
+          "protocol": "https",
+          "host": [
+            "49eu4ce452",
+            "execute-api",
+            "us-east-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            "tenants",
+            "empresas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aws - actualizar empresa",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-schema",
+            "value": "core",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"nit\": \"123456789\",\r\n        \"nombre\": \"Calicanto\",\r\n        \"direccion\": \"las palmas cartagena 1103 B\",\r\n        \"telefono\": \"3102458563\",\r\n        \"email\": \"jorgep.agamez@hotmail.com\",\r\n        \"moneda_base\": \"COP\",\r\n        \"is_active\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas/2",
+          "protocol": "https",
+          "host": [
+            "49eu4ce452",
+            "execute-api",
+            "us-east-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            "tenants",
+            "empresas",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aws - Desactivar empresa",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "x-schema",
+            "value": "core",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://49eu4ce452.execute-api.us-east-1.amazonaws.com/tenants/empresas/2/status",
+          "protocol": "https",
+          "host": [
+            "49eu4ce452",
+            "execute-api",
+            "us-east-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            "tenants",
+            "empresas",
+            "2",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
