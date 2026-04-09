@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/auth/login/login.component';
-import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { LoginComponent } from './modules/auth/presentation/login.component';
+import { MainLayoutComponent } from './modules/main-layout/main-layout.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -9,41 +9,41 @@ export const routes: Routes = [
         component: MainLayoutComponent,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent) },
-            { path: 'budgets', loadComponent: () => import('./features/budgets/budget.component').then(m => m.BudgetComponent) },
+            { path: 'dashboard', loadComponent: () => import('./modules/dashboard/presentation/dashboard.component').then(m => m.DashboardComponent) },
+            { path: 'budgets', loadComponent: () => import('./modules/budgets/presentation/budget.component').then(m => m.BudgetComponent) },
             {
                 path: 'users',
-                loadComponent: () => import('./features/users/user-management.component').then(m => m.UserManagementComponent),
+                loadComponent: () => import('./modules/users/user_management/presentation/user_management.component').then(m => m.UserManagementComponent),
                 children: [
                     { path: '', redirectTo: 'list', pathMatch: 'full' },
-                    { path: 'list', loadComponent: () => import('./features/users/users.component').then(m => m.UsersComponent) },
-                    { path: 'roles', loadComponent: () => import('./features/users/roles.component').then(m => m.RolesComponent) },
-                    { path: 'modules', loadComponent: () => import('./features/users/modules.component').then(m => m.ModulesComponent) },
+                    { path: 'list', loadComponent: () => import('./modules/users/users/presentation/users.component').then(m => m.UsersComponent) },
+                    { path: 'roles', loadComponent: () => import('./modules/users/roles/presentation/roles.component').then(m => m.RolesComponent) },
+                    { path: 'modules', loadComponent: () => import('./modules/users/modules/presentation/modules.component').then(m => m.ModulesComponent) },
                 ]
             },
             {
                 path: 'settings',
-                loadComponent: () => import('./features/settings/settings.component').then(m => m.SettingsComponent),
+                loadComponent: () => import('./modules/settings/settings/presentation/settings.component').then(m => m.SettingsComponent),
                 children: [
                     { path: '', redirectTo: 'company', pathMatch: 'full' },
-                    { path: 'company', loadComponent: () => import('./features/settings/company-settings.component').then(m => m.CompanySettingsComponent) },
-                    { path: 'preferences', loadComponent: () => import('./features/settings/preference-settings.component').then(m => m.PreferenceSettingsComponent) },
-                    { path: 'security', loadComponent: () => import('./features/settings/security-settings.component').then(m => m.SecuritySettingsComponent) },
-                    { path: 'notifications', loadComponent: () => import('./features/settings/notification-settings.component').then(m => m.NotificationSettingsComponent) },
+                    { path: 'company', loadComponent: () => import('./modules/settings/company/presentation/company_settings.component').then(m => m.CompanySettingsComponent) },
+                    { path: 'preferences', loadComponent: () => import('./modules/settings/preference/presentation/preference_settings.component').then(m => m.PreferenceComponent) },
+                    { path: 'security', loadComponent: () => import('./modules/settings/security/presentation/security_settings.component').then(m => m.SecurityComponent) },
+                    { path: 'notifications', loadComponent: () => import('./modules/settings/notification/presentation/notification_settings.component').then(m => m.notificationSettingsComponent) },
                 ]
             },
             {
-                path: 'movements',
-                loadComponent: () => import('./features/movements/movements-management.component').then(m => m.MovementsManagementComponent),
+                path: 'vouchers',
+                loadComponent: () => import('./modules/vouchers/movements_management/presentation/movements_management.component').then(m => m.MovementsManagementComponent),
                 children: [
                     { path: '', redirectTo: 'sales-invoice', pathMatch: 'full' },
-                    { path: 'sales-invoice', loadComponent: () => import('./features/movements/sales-invoice.component').then(m => m.SalesInvoiceComponent) },
-                    { path: 'purchase-invoice', loadComponent: () => import('./features/movements/purchase-invoice.component').then(m => m.PurchaseInvoiceComponent) },
-                    { path: 'payroll', loadComponent: () => import('./features/movements/payroll.component').then(m => m.PayrollComponent) },
-                    { path: 'cash-receipt', loadComponent: () => import('./features/movements/cash-receipt.component').then(m => m.CashReceiptComponent) },
-                    { path: 'payment-voucher', loadComponent: () => import('./features/movements/payment-voucher.component').then(m => m.PaymentVoucherComponent) },
-                    { path: 'bank-deposit', loadComponent: () => import('./features/movements/bank-deposit.component').then(m => m.BankDepositComponent) },
-                    { path: 'accounting-note', loadComponent: () => import('./features/movements/accounting-note.component').then(m => m.AccountingNoteComponent) },
+                    { path: 'sales-invoice', loadComponent: () => import('./modules/vouchers/sales_invoice/presentation/sales_invoice.component').then(m => m.SalesInvoiceComponent) },
+                    { path: 'purchase-invoice', loadComponent: () => import('./modules/vouchers/purchase_invoice/presentation/purchase_invoice.component').then(m => m.PurchaseInvoiceComponent) },
+                    { path: 'payroll', loadComponent: () => import('./modules/vouchers/payroll/presentation/payroll.component').then(m => m.PayrollComponent) },
+                    { path: 'cash-receipt', loadComponent: () => import('./modules/vouchers/cash_receipt/presentation/cash_receipt.component').then(m => m.CashReceiptComponent) },
+                    { path: 'payment-voucher', loadComponent: () => import('./modules/vouchers/payment_voucher/presentation/payment_voucher.component').then(m => m.PaymentVoucherComponent) },
+                    { path: 'bank-deposit', loadComponent: () => import('./modules/vouchers/bank_deposit/presentation/bank_deposit.component').then(m => m.BankDepositComponent) },
+                    { path: 'accounting-note', loadComponent: () => import('./modules/vouchers/accounting_note/presentation/accounting_note.component').then(m => m.AccountingNoteComponent) },
                 ]
             },
             // Other features will go here
