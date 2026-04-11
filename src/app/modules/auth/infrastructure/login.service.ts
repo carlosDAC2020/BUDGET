@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { login } from '../domain/login.model';
+import { ApiService } from '../../../core/services/api.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   create(data: login) {
-    return this.http.post('/logins', data);
+    return this.apiService.post('/logins', data);
   }
 
   list() {
-    return this.http.get<login[]>('/logins');
+    return this.apiService.get<login[]>('/logins');
   }
 }

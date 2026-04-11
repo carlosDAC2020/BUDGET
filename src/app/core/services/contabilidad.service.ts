@@ -8,7 +8,7 @@ import { CuentaPuc, Periodo, Comprobante, Asiento } from '../models/contabilidad
   providedIn: 'root'
 })
 export class ContabilidadService {
-  private baseUrl = environment.apiUrls.contabilidad;
+  private baseUrl = '';
 
   constructor(private http: HttpClient) { }
 

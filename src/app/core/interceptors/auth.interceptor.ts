@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('token');
-  const schema = localStorage.getItem('schema');
+  const schema = 'Calicanto' //localStorage.getItem('schema');
 
   const cloned = req.clone({
     setHeaders: {

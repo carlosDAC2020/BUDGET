@@ -8,7 +8,7 @@ import { Empresa } from '../models/empresa.model';
   providedIn: 'root'
 })
 export class EmpresasService {
-  private baseUrl = `${environment.apiUrls.tenants}/empresas`;
+  private baseUrl = '';
 
   constructor(private http: HttpClient) { }
 

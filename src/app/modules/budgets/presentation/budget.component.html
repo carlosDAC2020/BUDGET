@@ -7,15 +7,18 @@
                     <span class="material-symbols-outlined !text-[14px]">chevron_right</span>
                     <span class="text-slate-600 dark:text-slate-200">Presupuestos Corporativos</span>
                 </nav>
-                <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Annual Budget Management</h1>
+                <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Gestión de Presupuestos Anual</h1>
                 <p class="text-slate-500 dark:text-slate-400 font-medium">Configure las asignaciones financieras y límites de gasto por periodo fiscal.</p>
             </div>
             <div class="flex items-center gap-3">
                 <button class="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-700 dark:text-slate-200 font-black text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm">
-                    <span class="material-symbols-outlined !text-[20px]">file_download</span> Export
+                    <span class="material-symbols-outlined !text-[20px]">file_download</span> Exportar
                 </button>
-                <button class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl font-black text-sm hover:opacity-90 transition-all shadow-lg shadow-primary/20">
-                    <span class="material-symbols-outlined !text-[20px]">add</span> Nuevo Año Fiscal
+                <button 
+                    (click)="openModal()"
+                    class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl font-black text-sm hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+                    <span class="material-symbols-outlined !text-[20px]">add</span> 
+                    Nuevo Año Fiscal
                 </button>
             </div>
         </div>
@@ -34,9 +37,9 @@
                         <div class="space-y-2">
                             <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Año Fiscal</label>
                             <select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-primary focus:border-primary">
-                                <option>2024</option>
-                                <option selected>2025</option>
-                                <option>2026</option>
+                                <option *ngFor="let b of budgets$ | async" [value]="b.anio">
+                                    {{ b.anio }}
+                                </option>
                             </select>
                         </div>
                         <div class="space-y-2">
@@ -125,70 +128,64 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
-                                    <td class="px-6 py-4 font-bold text-slate-800 dark:text-slate-100">2025</td>
-                                    <td class="px-6 py-4 text-right font-medium text-slate-600 dark:text-slate-300">$1,250,000.00</td>
+                                <tr *ngFor="let b of budgets$ | async" 
+                                    class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+
+                                    <!-- Año -->
+                                    <td class="px-6 py-4 font-bold text-slate-800 dark:text-slate-100">
+                                    {{ b.anio }}
+                                    </td>
+
+                                    <!-- Total -->
+                                    <td class="px-6 py-4 text-right font-medium text-slate-600 dark:text-slate-300">
+                                    {{ b.total | currency:b.moneda:'symbol':'1.2-2' }}
+                                    </td>
+
+                                    <!-- Estado -->
                                     <td class="px-6 py-4 text-center">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">ACTIVO</span>
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold"
+                                        [ngClass]="b.is_active 
+                                        ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                                        : 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-400'">
+
+                                        {{ b.is_active ? 'ACTIVO' : 'INACTIVO' }}
+                                    </span>
                                     </td>
+
+                                    <!-- Ejecución (dummy por ahora) -->
                                     <td class="px-6 py-4">
-                                        <div class="flex items-center gap-2">
-                                            <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full">
-                                                <div class="h-full bg-blue-500 rounded-full" style="width: 12%"></div>
-                                            </div>
-                                            <span class="text-[10px] font-bold text-slate-500">12%</span>
+                                    <div class="flex items-center gap-2">
+                                        <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full">
+                                        <div class="h-full bg-blue-500 rounded-full" style="width: 0%"></div>
                                         </div>
+                                        <span class="text-[10px] font-bold text-slate-500">0%</span>
+                                    </div>
                                     </td>
+
+                                    <!-- Acciones -->
                                     <td class="px-6 py-4 text-right">
-                                        <div class="flex justify-end gap-2">
-                                            <button class="p-1.5 text-slate-400 hover:text-primary transition-colors hover:bg-primary/5 rounded">
-                                                <span class="material-symbols-outlined !text-[20px]">edit</span>
-                                            </button>
-                                            <button class="p-1.5 text-slate-400 hover:text-red-500 transition-colors hover:bg-red-50/5 rounded">
-                                                <span class="material-symbols-outlined !text-[20px]">delete</span>
-                                            </button>
-                                        </div>
+                                    <div class="flex justify-end gap-2">
+                                        <button class="p-1.5 text-slate-400 hover:text-primary">
+                                        <span class="material-symbols-outlined !text-[20px]">edit</span>
+                                        </button>
+                                    </div>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
-                                    <td class="px-6 py-4 font-bold text-slate-800 dark:text-slate-100">2024</td>
-                                    <td class="px-6 py-4 text-right font-medium text-slate-600 dark:text-slate-300">$1,100,000.00</td>
-                                    <td class="px-6 py-4 text-center">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-400">INACTIVO</span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center gap-2">
-                                            <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full">
-                                                <div class="h-full bg-slate-400 rounded-full" style="width: 98%"></div>
-                                            </div>
-                                            <span class="text-[10px] font-bold text-slate-500">98%</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <div class="flex justify-end gap-2">
-                                            <button class="p-1.5 text-slate-400 hover:text-primary transition-colors hover:bg-primary/5 rounded">
-                                                <span class="material-symbols-outlined !text-[20px]">visibility</span>
-                                            </button>
-                                            <button class="p-1.5 text-slate-400 hover:text-primary transition-colors hover:bg-primary/5 rounded">
-                                                <span class="material-symbols-outlined !text-[20px]">edit</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
 
                 <!-- Abstract Data Viz (Secondary Stats) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div *ngIf="stats$ | async as stats" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-5">
                         <div class="size-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined !text-[28px]">trending_up</span>
                         </div>
                         <div>
                             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Presupuesto Promedio</p>
-                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">$1,100,000.00</h4>
+                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">{{ stats?.average | number:'1.0-2' }}</h4>
                         </div>
                     </div>
                     <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-5">
@@ -197,10 +194,122 @@
                         </div>
                         <div>
                             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Ejecución Proyectada 2025</p>
-                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">$1,180,500.00</h4>
+                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">{{ stats?.projectionNextYear | number:'1.0-2' }}</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- MODAL -->
+<div [class.hidden]="!isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+
+  <!-- BACKDROP -->
+  <div 
+    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+    (click)="closeModal()">
+  </div>
+
+  <!-- MODAL CONTENT -->
+  <div class="relative w-full max-w-lg mx-4 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-fadeIn">
+
+    <!-- HEADER -->
+    <div class="bg-primary px-6 py-4 flex justify-between items-center">
+      <h2 class="text-white font-bold text-lg flex items-center gap-2">
+        <span class="material-symbols-outlined !text-[20px]">account_balance</span>
+        Nuevo Presupuesto
+      </h2>
+      <button 
+        (click)="closeModal()"
+        class="text-white hover:opacity-70">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- BODY -->
+    <form [formGroup]="budgetForm" class="p-6 space-y-5">
+
+      <!-- Fechas -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Fecha Inicio</label>
+          <input type="date" formControlName="fecha_ini"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Fecha Fin</label>
+          <input type="date" formControlName="fecha_fin"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+        </div>
+      </div>
+
+      <!-- Año -->
+      <div class="space-y-1">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Año</label>
+        <input type="number" formControlName="anio"
+          class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+      </div>
+
+      <!-- Total -->
+      <div class="space-y-1">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Total</label>
+        <div class="relative">
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+          <input type="number" formControlName="total"
+            class="w-full pl-8 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+        </div>
+      </div>
+
+      <!-- Moneda -->
+      <div class="space-y-1">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Moneda</label>
+        <select formControlName="moneda"
+          class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+          <option value="COP">COP</option>
+          <option value="USD">USD</option>
+        </select>
+      </div>
+
+      <!-- Switch -->
+      <div class="flex items-center justify-between pt-2">
+        <div>
+          <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Activo</span>
+          <p class="text-xs text-slate-500">Habilitar este presupuesto</p>
+        </div>
+
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" formControlName="is_active" class="sr-only peer">
+          <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 
+            peer-checked:after:translate-x-full peer-checked:after:border-white 
+            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+            after:bg-white after:border-gray-300 after:border after:rounded-full 
+            after:h-5 after:w-5 after:transition-all dark:border-gray-600 
+            peer-checked:bg-primary">
+          </div>
+        </label>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="flex justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+        <button 
+          type="button"
+          (click)="closeModal()"
+          class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold hover:opacity-80">
+          Cancelar
+        </button>
+
+        <button 
+          type="button"
+          (click)="save($event)"
+          [disabled]="isSaving"
+          class="px-4 py-2 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 
+          hover:scale-[1.02] active:scale-95 transition-all
+          disabled:opacity-50 disabled:cursor-not-allowed">
+          {{ isSaving ? 'Creando...' : 'Crear' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

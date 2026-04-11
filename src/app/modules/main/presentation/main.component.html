@@ -1,14 +1,4 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { SidebarComponent } from '../../modules/sidebar/sidebar.component';
-
-@Component({
-    selector: 'app-main-layout',
-    standalone: true,
-    imports: [CommonModule, RouterModule, SidebarComponent],
-    template: `
-    <div class="flex h-screen overflow-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex h-screen overflow-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
       <!-- Sidebar Navigation -->
       <app-sidebar></app-sidebar>
 
@@ -39,6 +29,3 @@ import { SidebarComponent } from '../../modules/sidebar/sidebar.component';
           </div>
       </main>
     </div>
-  `
-})
-export class MainLayoutComponent { }

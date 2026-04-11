@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Payroll } from '../domain/payroll.model';
+import { ApiService } from '../../../../core/services/api.service';
 
 @Injectable({ providedIn: 'root' })
 export class PayrollService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   create(data: Payroll) {
-    return this.http.post('/payrolls', data);
+    return this.apiService.post('/payrolls', data);
   }
 
   list() {
-    return this.http.get<Payroll[]>('/payrolls');
+    return this.apiService.get<Payroll[]>('/payrolls');
   }
 }

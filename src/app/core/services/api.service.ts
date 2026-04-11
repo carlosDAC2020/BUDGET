@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
-    private baseUrl = 'https://api.example.com'; // Adjust as needed
+    private baseUrl = environment.production ? environment.apiUrls.pro : environment.apiUrls.dev;
 
     constructor(private http: HttpClient) { }
 
@@ -24,5 +25,9 @@ export class ApiService {
 
     delete<T>(path: string): Observable<T> {
         return this.http.delete<T>(`${this.baseUrl}/${path}`);
+    }
+
+    patch<T>(path: string, body: any): Observable<T> {
+        return this.http.patch<T>(`${this.baseUrl}/${path}`, body);
     }
 }

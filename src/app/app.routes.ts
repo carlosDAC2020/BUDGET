@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/presentation/login.component';
-import { MainLayoutComponent } from './modules/main-layout/main-layout.component';
+import { MainComponent } from './modules/main/presentation/main.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     {
         path: '',
-        component: MainLayoutComponent,
+        component: MainComponent,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', loadComponent: () => import('./modules/dashboard/presentation/dashboard.component').then(m => m.DashboardComponent) },
@@ -22,7 +22,7 @@ export const routes: Routes = [
                 ]
             },
             {
-                path: 'settings',
+                path: 'administration',
                 loadComponent: () => import('./modules/settings/settings/presentation/settings.component').then(m => m.SettingsComponent),
                 children: [
                     { path: '', redirectTo: 'company', pathMatch: 'full' },

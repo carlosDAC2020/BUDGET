@@ -8,7 +8,7 @@ import { Rol, Modulo, Usuario } from '../models/seguridad.model';
   providedIn: 'root'
 })
 export class SeguridadService {
-  private baseUrl = environment.apiUrls.seguridad;
+  private baseUrl = '';
 
   constructor(private http: HttpClient) { }
 

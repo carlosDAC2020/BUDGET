@@ -8,12 +8,20 @@ export class CreateBudgetUseCase {
   constructor(private service: BudgetService) {}
 
   execute(data: Budget) {
-    if (!data.name) {
-      throw new Error('Nombre requerido');
+    if (!data.anio) {
+      throw new Error('Año requerido');
     }
 
-    if (data.amount <= 0) {
+    if (data.total <= 0) {
       throw new Error('Monto inválido');
+    }
+
+    if (data.fecha_ini >= new Date()) {
+      throw new Error('Fecha de inicio inválida');
+    }
+
+    if (data.fecha_fin > new Date(data.anio, 11, 31) || data.fecha_fin <= data.fecha_ini) {
+      throw new Error('Fecha de fin inválida');
     }
 
     return this.service.create(data);
