@@ -13,7 +13,7 @@ export const routes: Routes = [
             { path: 'budgets', loadComponent: () => import('./modules/budgets/presentation/budget.component').then(m => m.BudgetComponent) },
             {
                 path: 'users',
-                loadComponent: () => import('./modules/users/user_management/presentation/user_management.component').then(m => m.UserManagementComponent),
+                loadComponent: () => import('./modules/users/user_management/presentation/user-management.component').then(m => m.UserManagementComponent),
                 children: [
                     { path: '', redirectTo: 'list', pathMatch: 'full' },
                     { path: 'list', loadComponent: () => import('./modules/users/users/presentation/users.component').then(m => m.UsersComponent) },
@@ -44,6 +44,9 @@ export const routes: Routes = [
                     { path: 'payment-voucher', loadComponent: () => import('./modules/vouchers/payment_voucher/presentation/payment_voucher.component').then(m => m.PaymentVoucherComponent) },
                     { path: 'bank-deposit', loadComponent: () => import('./modules/vouchers/bank_deposit/presentation/bank_deposit.component').then(m => m.BankDepositComponent) },
                     { path: 'accounting-note', loadComponent: () => import('./modules/vouchers/accounting_note/presentation/accounting_note.component').then(m => m.AccountingNoteComponent) },
+                    { path: 'accounts', loadComponent: () => import('./modules/vouchers/account/presentation/account-modal.component').then(m => m.AccountModalComponent) },
+                    { path: 'period', loadComponent: () => import('./modules/vouchers/period/presentation/period.component').then(m => m.PeriodComponent) },
+                    { path: 'center-cost', loadComponent: () => import('./modules/vouchers/center_cost/presentation/center_cost.component').then(m => m.CenterCostComponent) },
                 ]
             },
             // Other features will go here

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CreateSalesInvoiceUseCase } from '../application/create_sales_invoice.usecase';
 
 @Component({
-  selector: 'app_sales_invoice',
+  selector: 'app-sales-invoice',
   templateUrl: './sales_invoice.component.html'
 })
 export class SalesInvoiceComponent {

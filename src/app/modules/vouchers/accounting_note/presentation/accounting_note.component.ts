@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CreateAccountingNoteUseCase } from '../application/accounting_note.usecase';
 
 @Component({
-  selector: 'app_accounting_note',
+  selector: 'app-accounting-note',
   templateUrl: './accounting_note.component.html'
 })
 export class AccountingNoteComponent {

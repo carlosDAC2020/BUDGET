@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CreatePayrollUseCase } from '../application/create_payroll.usecase';
 
 @Component({
-  selector: 'app_payroll',
+  selector: 'app-payroll',
   templateUrl: './payroll.component.html'
 })
 export class PayrollComponent {

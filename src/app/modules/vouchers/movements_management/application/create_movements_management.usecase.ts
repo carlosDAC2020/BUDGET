@@ -8,14 +8,6 @@ export class CreateMovementsManagementUseCase {
   constructor(private service: MovementsManagementService) {}
 
   execute(data: MovementsManagement) {
-    if (!data.name) {
-      throw new Error('Nombre requerido');
-    }
-
-    if (data.amount <= 0) {
-      throw new Error('Monto inválido');
-    }
-
     return this.service.create(data);
   }
 }

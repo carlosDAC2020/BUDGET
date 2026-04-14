@@ -1,0 +1,162 @@
+<!-- HEADER -->
+<div class="flex justify-between items-center mt-4">
+  <h1 class="text-xl font-bold text-slate-800 dark:text-slate-200">
+    Centros de Costos
+  </h1>
+
+  <button 
+    (click)="openModal()"
+    class="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 
+    hover:scale-[1.03] active:scale-95 transition-all">
+    
+    <span class="material-symbols-outlined text-[20px]">add</span>
+    Nuevo Centro de Costo
+  </button>
+</div>
+
+<!-- TABLA -->
+<div class="flex justify-center mt-6">
+  <div class="w-full max-w-6xl bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+
+    <!-- HEADER TABLA -->
+    <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">
+        Listado de Centros de Costos
+      </h3>
+    </div>
+
+    <!-- TABLE -->
+    <div class="overflow-x-auto">
+
+      <!-- 👇 usamos async correctamente -->
+      <ng-container *ngIf="centerCosts$ | async as centerCosts">
+
+        <table class="w-full text-sm">
+
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+            <tr>
+              <th class="text-left px-6 py-3">id</th>
+              <th class="text-left px-6 py-3">codigo</th>
+              <th class="text-left px-6 py-3">Nombre</th>
+              <th class="text-right px-6 py-3">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+
+            <tr *ngFor="let centerCost of centerCosts"
+                class="hover:bg-slate-50 dark:hover:bg-slate-800">
+
+              <td class="px-6 py-3 font-mono">{{ centerCost.id }}</td>
+              <td class="px-6 py-3">{{ centerCost.codigo }}</td>
+              <td class="px-6 py-3">{{ centerCost.nombre }}</td>
+              <td class="px-6 py-3 text-right">
+                <div class="flex justify-end gap-2">
+
+                  <button 
+                    (click)="editCenter(centerCost)"
+                    class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-primary/10">
+                    <span class="material-symbols-outlined text-[18px] text-primary">edit</span>
+                  </button>
+
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- ✅ EMPTY STATE CORRECTO -->
+            <tr *ngIf="centerCosts.length === 0">
+              <td colspan="6" class="text-center py-10 text-slate-500">
+                No hay centros de costos registrados
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div *ngIf="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+
+  <!-- BACKDROP -->
+  <div 
+    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+    (click)="closeModal()">
+  </div>
+
+  <!-- MODAL CONTENT -->
+  <div class="relative w-full max-w-md mx-4 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-fadeIn">
+
+    <!-- HEADER -->
+    <div class="bg-primary px-6 py-4 flex justify-between items-center">
+      <h2 class="text-white font-bold text-lg flex items-center gap-2">
+        <span class="material-symbols-outlined !text-[20px]">account_tree</span>
+        {{ isEdit ? 'Editar Centro de Costo' : 'Nuevo Centro de Costo' }}
+      </h2>
+
+      <button (click)="closeModal()" class="text-white hover:opacity-70">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- BODY -->
+    <form *ngIf="form" [formGroup]="form" class="p-6 space-y-5">
+
+      <!-- Código -->
+      <div class="space-y-1">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          Código
+        </label>
+        <input 
+          type="text" 
+          formControlName="codigo"
+          placeholder="Ej: CC-001"
+          class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+      </div>
+
+      <!-- Nombre -->
+      <div class="space-y-1">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          Nombre
+        </label>
+        <input 
+          type="text" 
+          formControlName="nombre"
+          placeholder="Ej: Administración"
+          class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="flex justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+
+        <button 
+          type="button"
+          (click)="closeModal()"
+          class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold">
+          Cancelar
+        </button>
+
+        <button 
+          type="button"
+          (click)="save()"
+          [disabled]="form.invalid || isSaving"
+          class="px-4 py-2 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 
+          disabled:opacity-50 disabled:cursor-not-allowed">
+
+          {{ isSaving 
+              ? (isEdit ? 'Actualizando...' : 'Creando...') 
+              : (isEdit ? 'Actualizar' : 'Crear') 
+          }}
+
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+</div>

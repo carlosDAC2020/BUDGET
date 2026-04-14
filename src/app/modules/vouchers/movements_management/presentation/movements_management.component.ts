@@ -3,7 +3,7 @@ import { CreateMovementsManagementUseCase } from '../application/create_movement
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app_movements_management',
+  selector: 'app-movements-management',
   templateUrl: './movements_management.component.html',
   imports: [
     RouterLink,

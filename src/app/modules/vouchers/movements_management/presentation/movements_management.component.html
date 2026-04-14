@@ -3,26 +3,26 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div class="space-y-1">
                 <nav class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
-                    <a href="#" class="hover:text-primary transition-colors">Panel principal</a>
+                    <a href="#" class="hover:text-primary transition-colors">Modulo Contable</a>
                     <span class="material-symbols-outlined !text-[14px]">chevron_right</span>
                     <span class="text-slate-600 dark:text-slate-200">Gestión de Documentos</span>
                 </nav>
-                <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Panel principal</h1>
+                <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Modulo Contable</h1>
                 <p class="text-slate-500 dark:text-slate-400 font-medium">Gestión integral de documentos contables y movimientos financieros.</p>
             </div>
         </div>
 
         <!-- Tab Navigation -->
         <div class="border-b border-slate-200 dark:border-slate-800 flex gap-8">
-            <a routerLink="./company" routerLinkActive="border-primary text-primary" [routerLinkActiveOptions]="{exact: false}"
+            <a routerLink="./accounts" routerLinkActive="border-primary text-primary" [routerLinkActiveOptions]="{exact: false}"
                 class="pb-4 text-sm font-black border-b-2 border-transparent text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-2 transition-all">
                 <span class="material-symbols-outlined text-lg">account_balance</span> Cuentas Contables
             </a>
-            <a routerLink="./preferences" routerLinkActive="border-primary text-primary"
+            <a routerLink="./period" routerLinkActive="border-primary text-primary"
                 class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-2 transition-all group">
                 <span class="material-symbols-outlined text-lg text-slate-400 group-hover:text-primary">calendar_month</span> Periodos Contables
             </a>
-            <a routerLink="./security" routerLinkActive="border-primary text-primary"
+            <a routerLink="./center-cost" routerLinkActive="border-primary text-primary"
                 class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-2 transition-all group">
                 <span class="material-symbols-outlined text-lg text-slate-400 group-hover:text-primary">account_tree</span> Centros de Costo
             </a>

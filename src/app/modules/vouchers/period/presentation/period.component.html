@@ -1,0 +1,216 @@
+<!-- HEADER -->
+<div class="flex justify-between items-center mt-4">
+  <h1 class="text-xl font-bold text-slate-800 dark:text-slate-200">
+    Periodos Contables
+  </h1>
+
+  <button 
+    (click)="openModal()"
+    class="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 
+    hover:scale-[1.03] active:scale-95 transition-all">
+    
+    <span class="material-symbols-outlined text-[20px]">add</span>
+    Nuevo Periodo
+  </button>
+</div>
+
+<!-- TABLA -->
+<div class="flex justify-center mt-6">
+  <div class="w-full max-w-6xl bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+
+    <!-- HEADER TABLA -->
+    <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">
+        Listado de Peridos
+      </h3>
+    </div>
+
+    <!-- TABLE -->
+    <div class="overflow-x-auto">
+
+      <!-- 👇 usamos async correctamente -->
+      <ng-container *ngIf="periods$ | async as periods">
+
+        <table class="w-full text-sm">
+
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+            <tr>
+              <th class="text-left px-6 py-3">año</th>
+              <th class="text-left px-6 py-3">mes</th>
+              <th class="text-left px-6 py-3">fecha inicio</th>
+              <th class="text-left px-6 py-3">fecha fin</th>
+              <th class="text-left px-6 py-3">Estado</th>
+              <th class="text-right px-6 py-3">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+
+            <tr *ngFor="let period of periods"
+                class="hover:bg-slate-50 dark:hover:bg-slate-800">
+
+              <td class="px-6 py-3 font-mono">{{ period.anio }}</td>
+              <td class="px-6 py-3">{{ period.mes }}</td>
+              <td class="px-6 py-3">{{ period.fecha_inicio }}</td>
+              <td class="px-6 py-3">{{ period.fecha_fin }}</td>
+              <td class="px-6 py-3">
+                <span class="px-2 py-1 rounded-full text-xs font-bold"
+                  [ngClass]="period.cerrado 
+                    ? 'bg-green-100 text-green-700' 
+                    : 'bg-slate-200 text-slate-500'">
+                  {{ period.cerrado ? 'Cerrado' : 'Abierto' }}
+                </span>
+              </td>
+
+              <td class="px-6 py-3 text-right">
+                <div class="flex justify-end gap-2">
+
+                  <button 
+                    (click)="editAccount(period)"
+                    class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-primary/10">
+                    <span class="material-symbols-outlined text-[18px] text-primary">edit</span>
+                  </button>
+
+                  <button 
+                    (click)="toggleStatus(period)"
+                    class="p-2 rounded-lg"
+                    [ngClass]="period.cerrado ? 'bg-red-100' : 'bg-green-100'">
+
+                    <span class="material-symbols-outlined text-[18px]"
+                      [ngClass]="period.cerrado ? 'text-red-600' : 'text-green-600'">
+                      {{ period.cerrado ? 'toggle_off' : 'toggle_on' }}
+                    </span>
+
+                  </button>
+
+                </div>
+              </td>
+
+            </tr>
+
+            <!-- ✅ EMPTY STATE CORRECTO -->
+            <tr *ngIf="periods.length === 0">
+              <td colspan="6" class="text-center py-10 text-slate-500">
+                No hay periodos registrados
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div *ngIf="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+
+  <!-- BACKDROP -->
+  <div 
+    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+    (click)="closeModal()">
+  </div>
+
+  <!-- MODAL CONTENT -->
+  <div class="relative w-full max-w-lg mx-4 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-fadeIn">
+
+    <!-- HEADER -->
+    <div class="bg-primary px-6 py-4 flex justify-between items-center">
+      <h2 class="text-white font-bold text-lg flex items-center gap-2">
+        <span class="material-symbols-outlined !text-[20px]">calendar_month</span>
+        {{ isEdit ? 'Editar Periodo' : 'Nuevo Periodo' }}
+      </h2>
+      <button (click)="closeModal()" class="text-white hover:opacity-70">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- BODY -->
+    <form *ngIf="form" [formGroup]="form" class="p-6 space-y-5">
+
+      <!-- Año + Mes -->
+      <div class="grid grid-cols-2 gap-4">
+        
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Año</label>
+          <input type="number" formControlName="anio"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Mes</label>
+          <select formControlName="mes"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+            <option value="">Seleccione</option>
+            <option *ngFor="let m of [1,2,3,4,5,6,7,8,9,10,11,12]" [value]="m">
+              {{ m }}
+            </option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Fechas -->
+      <div class="grid grid-cols-2 gap-4">
+        
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Fecha Inicio</label>
+          <input type="date" formControlName="fecha_inicio"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Fecha Fin</label>
+          <input type="date" formControlName="fecha_fin"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"/>
+        </div>
+
+      </div>
+
+      <!-- Estado -->
+      <div class="flex items-center justify-between pt-2">
+        <div>
+          <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Cerrado</span>
+          <p class="text-xs text-slate-500">Bloquear operaciones en este periodo</p>
+        </div>
+
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" formControlName="cerrado" class="sr-only peer">
+          <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 
+            peer-checked:after:translate-x-full peer-checked:after:border-white 
+            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+            after:bg-white after:border-gray-300 after:border after:rounded-full 
+            after:h-5 after:w-5 after:transition-all dark:border-gray-600 
+            peer-checked:bg-primary">
+          </div>
+        </label>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="flex justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+        
+        <button 
+          type="button"
+          (click)="closeModal()"
+          class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold">
+          Cancelar
+        </button>
+
+        <button 
+          type="button"
+          (click)="save()"
+          [disabled]="form.invalid || isSaving"
+          class="px-4 py-2 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 
+          disabled:opacity-50">
+
+          {{ isSaving ? (isEdit ? 'Actualizando...' : 'Creando...') : (isEdit ? 'Actualizar' : 'Crear') }}
+
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+</div>
