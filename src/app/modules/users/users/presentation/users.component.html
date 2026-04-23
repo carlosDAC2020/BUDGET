@@ -1,26 +1,22 @@
 <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+    <!-- 🔵 LEFT SIDE (TABLA + ROLES) -->
+    <div class="xl:col-span-2 space-y-8">
         <!-- User Table Section -->
-        <div class="xl:col-span-2 space-y-4">
+        <div class="space-y-4">
             <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <!-- HEADER -->
                 <div class="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 flex flex-wrap gap-4 items-center justify-between">
                     <div class="flex items-center gap-2">
-                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Usuarios Activos</span>
-                        <span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">128 Total</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <select class="text-xs border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:ring-primary focus:border-primary">
-                            <option>Filtrar Por Rol</option>
-                            <option>Admin</option>
-                            <option>Editor</option>
-                            <option>Viewer</option>
-                        </select>
-                        <select class="text-xs border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:ring-primary focus:border-primary">
-                            <option>Filtrar Por Estado: Todos</option>
-                            <option>Activos</option>
-                            <option>Inactivos</option>
-                        </select>
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+                            Usuarios Activos
+                        </span>
+                        <span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">
+                            128 Total
+                        </span>
                     </div>
                 </div>
+
+                <!-- TABLE -->
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider border-b border-slate-100 dark:border-slate-800">
@@ -32,86 +28,88 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                            <tr *ngFor="let user of (users$ | async) ?? []" class="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors group">
-
-                                <!-- USER -->
+                            <tr *ngFor="let user of (users$ | async) ?? []"
+                                class="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors group">
                                 <td class="px-6 py-4">
-                                <div class="flex items-center gap-3">
-                                    
-                                    <!-- Avatar -->
-                                    <div class="size-9 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold">
-                                        {{ user.nombre.charAt(0) }}{{ user.apellido.charAt(0) }}
+                                    <div class="flex items-center gap-3">
+                                        <div class="size-9 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold">
+                                            {{ user.nombre.charAt(0) }}{{ user.apellido.charAt(0) }}
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-slate-900 dark:text-slate-100">
+                                                {{ user.nombre }} {{ user.apellido }}
+                                            </p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">
+                                                {{ user.email }}
+                                            </p>
+                                        </div>
                                     </div>
-
-                                    <!-- Info -->
-                                    <div>
-                                    <p class="text-sm font-bold text-slate-900 dark:text-slate-100">
-                                        {{ user.nombre }} {{ user.apellido }}
-                                    </p>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400">
-                                        {{ user.email }}
-                                    </p>
-                                    </div>
-
-                                </div>
                                 </td>
+                               
+                                <td class="px-6 py-4"></td>
 
-                                <!-- ROLES --> 
                                 <td class="px-6 py-4">
-                                <div class="flex flex-wrap gap-1">
                                     <span
-                                    class="text-[10px] font-bold bg-primary text-white px-2 py-0.5 rounded uppercase">
+                                        class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium"
+                                        [ngClass]="user.is_active 
+                                        ? 'bg-emerald-100 text-emerald-800' 
+                                        : 'bg-slate-100 text-slate-500'">
+                                        <span class="size-1.5 rounded-full"
+                                            [ngClass]="user.is_active ? 'bg-emerald-600' : 'bg-slate-400'">
+                                        </span>
+                                        {{ user.is_active ? 'Activo' : 'Inactivo' }}
                                     </span>
-                                </div>
                                 </td>
 
-                                <!-- STATUS -->
-                                <td class="px-6 py-4">
-                                <span
-                                    class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium"
-                                    [ngClass]="user.is_active 
-                                    ? 'bg-emerald-100 text-emerald-800' 
-                                    : 'bg-slate-100 text-slate-500'">
-
-                                    <span class="size-1.5 rounded-full"
-                                    [ngClass]="user.is_active ? 'bg-emerald-600' : 'bg-slate-400'">
-                                    </span>
-
-                                    {{ user.is_active ? 'Activo' : 'Inactivo' }}
-                                </span>
-                                </td>
-
-                                <!-- ACTIONS -->
                                 <td class="px-6 py-4 text-right">
-                                <div class="flex justify-end gap-2">
-                                    <button (click)="editUser(user)"
-                                    class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-md">
-                                    <span class="material-symbols-outlined text-lg">edit</span>
-                                    </button>
-                                </div>
+                                    <div class="flex justify-end gap-2">
+                                        <button (click)="editUser(user)"
+                                            class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-md">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                    </div>
                                 </td>
-
                             </tr>
-                            </tbody>
+                        </tbody>
                     </table>
-                </div>
-                <!-- Pagination -->
-                <div class="p-4 bg-slate-50/50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                    <span class="text-xs text-slate-500 font-medium">Mostrar 1 a 10 de 128 resultados</span>
-                    <div class="flex items-center gap-1">
-                        <button class="p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-400 disabled:opacity-50 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">
-                            <span class="material-symbols-outlined text-sm">chevron_left</span>
-                        </button>
-                        <button class="size-8 rounded bg-primary text-white text-xs font-bold shadow-sm">1</button>
-                        <button class="size-8 rounded border border-slate-200 dark:border-slate-700 text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">2</button>
-                        <button class="size-8 rounded border border-slate-200 dark:border-slate-700 text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">3</button>
-                        <button class="p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-400 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">
-                            <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 space-y-4">
+        <div class="flex items-center justify-between">
+            <h4 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">
+            Distribución de Roles
+            </h4>
+            <span class="material-symbols-outlined text-slate-400 text-lg">info</span>
+        </div>
+
+        <div class="space-y-4" *ngIf="rolesStats$ | async as roles">
+            <div *ngFor="let rol of roles" class="space-y-1.5">
+            <!-- HEADER -->
+            <div class="flex justify-between text-xs font-bold">
+                <span class="text-slate-500 dark:text-slate-400">
+                {{ rol.nombre }}
+                </span>
+                <span class="text-slate-900 dark:text-white">
+                {{ rol.count }}
+                </span>
+            </div>
+
+            <!-- PROGRESS BAR -->
+            <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+                <div 
+                class="bg-primary h-full rounded-full transition-all"
+                [style.width.%]="rol.percentage">
+                </div>
+            </div>
+            </div>
+        </div>
+        <button (click)="openModal()" class="w-full py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-black text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+            Gestión de Roles
+        </button>
+    </div>
+</div>
 
         <!-- Right Panel: Forms -->
         <div class="space-y-6">
@@ -172,6 +170,7 @@
                 <div class="space-y-1">
                 <label class="text-xs font-bold uppercase">Contraseña</label>
                 <input
+                    formControlName="password_hash"
                     class="w-full rounded-lg text-sm p-2.5"
                     placeholder="••••••••"
                     type="password" />
@@ -181,9 +180,7 @@
             <!-- ROLES -->
             <div class="space-y-2">
                 <label class="text-xs font-black uppercase">Asignacion de Rol</label>
-
                 <div class="grid grid-cols-2 gap-3">
-
                 <!-- ADMIN -->
                 <label class="flex items-center gap-2 p-2.5 border rounded-xl cursor-pointer">
                     <input
@@ -223,20 +220,31 @@
                     formControlName="id_rol" />
                     <span class="text-xs font-bold">Support</span>
                 </label>
-
                 </div>
             </div>
 
             <!-- ESTADO -->
-            <div class="flex items-center gap-3 py-2">
+            <div class="flex items-center justify-between py-2">
+            <span class="text-sm font-bold">
+                Cuenta Activa
+            </span>
+            <label class="relative inline-flex items-center cursor-pointer">
                 <input
                 type="checkbox"
                 formControlName="is_active"
-                class="w-4 h-4" />
+                class="sr-only peer"
+                />
 
-                <span class="text-sm font-bold">
-                Cuenta Activa
-                </span>
+                <!-- Track -->
+                <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full 
+                            peer-checked:bg-primary transition-colors">
+                </div>
+
+                <!-- Thumb -->
+                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all
+                            peer-checked:translate-x-5">
+                </div>
+            </label>
             </div>
 
             <!-- BOTÓN -->
@@ -247,47 +255,80 @@
                 {{isEdit ? 'Actualizar Usuario' : 'Crear Usuario'}}
                 </button>
             </div>
-
             </div>
         </div>
-        </div>
+    </div>
+</div>
 
+<!-- MODAL -->
+<div [class.hidden]="!isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
 
-            <!-- Role Distribution Card -->
-            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                    <h4 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">Distribución de Roles</h4>
-                    <span class="material-symbols-outlined text-slate-400 text-lg">info</span>
-                </div>
-                <div class="space-y-4">
-                    <div class="space-y-1.5">
-                        <div class="flex justify-between text-xs font-bold">
-                            <span class="text-slate-500 dark:text-slate-400">Administrador</span>
-                            <span class="text-slate-900 dark:text-white">12</span>
-                        </div>
-                        <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
-                            <div class="bg-primary h-full rounded-full w-[10%]"></div>
-                        </div>
-                    </div>
-                    <div class="space-y-1.5">
-                        <div class="flex justify-between text-xs font-bold">
-                            <span class="text-slate-500 dark:text-slate-400">Editores</span>
-                            <span class="text-slate-900 dark:text-white">45</span>
-                        </div>
-                        <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
-                            <div class="bg-primary/60 h-full rounded-full w-[35%]"></div>
-                        </div>
-                    </div>
-                    <div class="space-y-1.5">
-                        <div class="flex justify-between text-xs font-bold">
-                            <span class="text-slate-500 dark:text-slate-400">Viewers / Customers</span>
-                            <span class="text-slate-900 dark:text-white">71</span>
-                        </div>
-                        <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
-                            <div class="bg-primary/30 h-full rounded-full w-[55%]"></div>
-                        </div>
-                    </div>
-                </div>
-                <button class="w-full py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-black text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-sm">Gestion de Roles</button>
-            </div>
-        </div>
+  <!-- BACKDROP -->
+  <div 
+    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+    (click)="closeModal()">
+  </div>
+
+  <!-- MODAL CONTENT -->
+<div class="relative w-full max-w-lg mx-4 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+  <!-- HEADER -->
+  <div class="bg-primary px-6 py-4 flex justify-between items-center">
+    <h2 class="text-white font-bold text-lg flex items-center gap-2">
+      <span class="material-symbols-outlined !text-[20px]">admin_panel_settings</span>
+      Nuevo Rol
+    </h2>
+
+    <button (click)="closeModal()" class="text-white hover:opacity-70">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <!-- BODY -->
+  <form [formGroup]="roleForm" class="p-6 space-y-5">
+    <!-- NOMBRE -->
+    <div class="space-y-1">
+      <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+        Nombre del Rol
+      </label>
+      <input
+        type="text"
+        formControlName="nombre"
+        placeholder="Ej: Vendedor"
+        class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2"
+      />
+    </div>
+
+    <!-- DESCRIPCIÓN -->
+    <div class="space-y-1">
+      <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+        Descripción
+      </label>
+      <textarea
+        formControlName="descripcion"
+        rows="3"
+        placeholder="Describe el rol dentro del sistema..."
+        class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2"
+      ></textarea>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="flex justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+      <button 
+        type="button"
+        (click)="closeModal()"
+        class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold hover:opacity-80">
+        Cancelar
+      </button>
+
+      <button 
+        type="button"
+        (click)="createRol()"
+        [disabled]="isSaving || roleForm.invalid"
+        class="px-4 py-2 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 
+        hover:scale-[1.02] active:scale-95 transition-all
+        disabled:opacity-50 disabled:cursor-not-allowed">
+        {{ isSaving ? 'Guardando...' : 'Crear Rol' }}
+      </button>
+    </div>
+  </form>
+</div>

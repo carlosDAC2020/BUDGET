@@ -18,7 +18,6 @@ export const routes: Routes = [
                     { path: '', redirectTo: 'list', pathMatch: 'full' },
                     { path: 'list', loadComponent: () => import('./modules/users/users/presentation/users.component').then(m => m.UsersComponent) },
                     { path: 'roles', loadComponent: () => import('./modules/users/roles/presentation/roles.component').then(m => m.RolesComponent) },
-                    { path: 'modules', loadComponent: () => import('./modules/users/modules/presentation/modules.component').then(m => m.ModulesComponent) },
                 ]
             },
             {
@@ -49,7 +48,6 @@ export const routes: Routes = [
                     { path: 'center-cost', loadComponent: () => import('./modules/vouchers/center_cost/presentation/center_cost.component').then(m => m.CenterCostComponent) },
                 ]
             },
-            // Other features will go here
         ]
     },
     { path: '**', redirectTo: 'login' }

@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CreateUserUseCase } from '../application/create-user.usecase';
 import { updateUserUseCase } from '../application/update-user.usecase';
 import { ListUserUseCase } from '../application/list-user.usecase';
-import { Observable } from 'rxjs';
-import { Users } from '../domain/user.model';
+import { ListRoleUseCase } from '../../roles/application/list-roles.usecase';
+import { CreateRoleUseCase} from '../../roles/application/create-role.usecase';
+import { Observable, map, tap } from 'rxjs';
+import { managedRole, Users } from '../domain/user.model';
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -17,30 +18,45 @@ import { FormBuilder } from '@angular/forms';
 export class UsersComponent implements OnInit{
 
   users$!: Observable<Users[]>;
+  rolesStats$!: Observable<managedRole[]>;
   @Input() data?: Users;
   form!: FormGroup;
-  isModalOpenUser = false;
   isSaving = false;
   isEdit = false;
+  totalUsers = 0;
+  isModalOpen = false;
+  roleForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder, 
     private createUser: CreateUserUseCase, 
-    private listUsers: ListUserUseCase, 
+    private listUsers: ListUserUseCase,
+    private listRoles: ListRoleUseCase,
+    private createRole: CreateRoleUseCase,
     private updateUser: updateUserUseCase) {}
 
 
   ngOnInit() {
     this.loadUsers();
     this.userForm();
+    this.rolesForm();
+    this.loadRoles();
   }
 
   loadUsers() {
     this.users$ = this.listUsers.execute(2); // ToDo pasar el id de la emprasa por parametro
   }
 
+  rolesForm(){ 
+    this.roleForm = this.fb.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required]
+    });
+  }
+
   userForm() {
     this.form = this.fb.group({
+      id_user: [''],
       cognito_sub:[''],
       username: [''],
       nombre: [''],
@@ -48,6 +64,7 @@ export class UsersComponent implements OnInit{
       email: [''],
       id_rol: [null],
       id_empresa: [2],
+      password_hash: [''],
       is_active: [true]
     });
   }
@@ -98,21 +115,64 @@ export class UsersComponent implements OnInit{
       this.form.reset();
       if (data) {
         this.form.patchValue({
+          id_user: data.id,
           nombre: data.nombre,
           apellido: data.apellido,
           username: data.username,
           email: data.email,
           id_rol: data.id_rol,
           id_empresa: data.id_empresa,
+          password_hash: data.password_hash,
           is_active: data.is_active
         });
       }
-      this.isModalOpenUser = true;
-  }
-    
-  closeModal() {
-      this.isModalOpenUser = false;
   }
 
+  loadRoles() {
+    this.rolesStats$ = this.listRoles.execute(2).pipe(
+      tap(roles => {
+        this.totalUsers = roles.reduce((acc, r) => acc + (r.users_count || 0), 0);
+      }),
+      map(roles =>
+        roles.map(r => ({
+          nombre: r.nombre,
+          count: r.users_count || 0,
+          percentage: this.totalUsers
+            ? Math.round((r.users_count * 100) / this.totalUsers)
+            : 0
+        }))
+      )
+    );
+  }
+
+  openModal() {
+    this.roleForm.reset();
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  
+  createRol(event?: Event) {
+    event?.stopPropagation();
+    if (this.roleForm.invalid || this.isSaving) return;
+    this.isSaving = true;
+    const payload = this.roleForm.value;
+    this.createRole.execute(payload).subscribe({
+      next: () => {
+        this.isModalOpen = false;
+        this.isSaving = false;
+        this.roleForm.reset({
+        is_active: true
+      });
+         this.loadRoles();
+      },
+      error: (err) => {
+        this.isSaving = false;
+      }
+    });
+  }
 
 }
