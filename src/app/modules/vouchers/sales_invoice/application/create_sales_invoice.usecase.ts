@@ -8,14 +8,6 @@ export class  CreateSalesInvoiceUseCase {
   constructor(private service: SalesInvoiceService) {}
 
   execute(data: SalesInvoice) {
-    if (!data.name) {
-      throw new Error('Nombre requerido');
-    }
-
-    if (data.amount <= 0) {
-      throw new Error('Monto inválido');
-    }
-
     return this.service.create(data);
   }
 }

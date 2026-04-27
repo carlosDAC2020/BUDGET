@@ -1,0 +1,73 @@
+<div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+  
+  <!-- HEADER -->
+  <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-amber-600">account_tree</span>
+      <h4 class="font-black text-lg text-slate-900 dark:text-white tracking-tight">
+        {{ title }}
+      </h4>
+    </div>
+
+    <button 
+      (click)="onAdd.emit()"
+      class="px-4 py-2 bg-amber-500/10 text-amber-600 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-amber-500 hover:text-white transition-all shadow-sm">
+      + Nueva Cuenta
+    </button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      
+      <thead>
+        <tr class="text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100 dark:border-slate-800">
+          <th class="px-6 py-4">Cuenta PUC</th>
+          <th class="px-6 py-4">Concepto</th>
+          <th class="px-6 py-4">Tercero</th>
+          <th class="px-6 py-4 text-right">Débito</th>
+          <th class="px-6 py-4 text-right">Crédito</th>
+          <th class="px-6 py-4 text-center">Acción</th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+        
+        <tr 
+          *ngFor="let item of data; let i = index"
+          class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+
+          <td class="px-6 py-5">
+            <input [(ngModel)]="item.cuenta" class="w-full bg-transparent border-none text-sm font-bold outline-none focus:text-amber-600"/>
+          </td>
+
+          <td class="px-6 py-5">
+            <input [(ngModel)]="item.concepto" class="w-full bg-transparent border-none text-sm outline-none"/>
+          </td>
+
+          <td class="px-6 py-5">
+            <span class="text-xs font-bold">{{ item.tercero }}</span>
+          </td>
+
+          <td class="px-6 py-5 text-right font-black">
+            {{ item.debito | currency }}
+          </td>
+
+          <td class="px-6 py-5 text-right font-black">
+            {{ item.credito | currency }}
+          </td>
+
+          <td class="px-6 py-5 text-center">
+            <button (click)="remove(i)" class="text-slate-300 hover:text-red-500">
+              <span class="material-symbols-outlined !text-xl">delete</span>
+            </button>
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+
+</div>

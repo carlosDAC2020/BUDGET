@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CreateMovementsManagementUseCase } from '../application/create_movements_management.usecase';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -13,9 +12,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 })
 export class MovementsManagementComponent {
 
-  constructor(private createMovementsManagement: CreateMovementsManagementUseCase) {}
+  constructor() {}
 
-  save(form: any) {
-    this.createMovementsManagement.execute(form).subscribe();
-  }
 }
