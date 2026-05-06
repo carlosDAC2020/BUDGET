@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/presentation/login.component';
 import { MainComponent } from './modules/main/presentation/main.component';
+import { VoucherType } from './modules/vouchers/domain/enums/voucher-type.enum';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -35,7 +36,8 @@ export const routes: Routes = [
                 path: 'vouchers',
                 loadComponent: () => import('./modules/vouchers/movements_management/presentation/movements_management.component').then(m => m.MovementsManagementComponent),
                 children: [
-                    { path: '', redirectTo: 'sales-invoice', pathMatch: 'full' },
+                    { path: '', redirectTo: 'voucher', pathMatch: 'full' },
+                    { path: 'voucher', loadComponent: () => import('./modules/vouchers/presentation/pages/voucher.component').then(m => m.VoucherComponent), data: { tipo: VoucherType.VOUCHER }},
                     { path: 'sales-invoice', loadComponent: () => import('./modules/vouchers/sales_invoice/presentation/sales_invoice.component').then(m => m.SalesInvoiceComponent) },
                     { path: 'purchase-invoice', loadComponent: () => import('./modules/vouchers/purchase_invoice/presentation/purchase_invoice.component').then(m => m.PurchaseInvoiceComponent) },
                     { path: 'payroll', loadComponent: () => import('./modules/vouchers/payroll/presentation/payroll.component').then(m => m.PayrollComponent) },

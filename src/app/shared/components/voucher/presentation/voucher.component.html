@@ -1,0 +1,88 @@
+<!-- 🔷 VOUCHER HEADER -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
+
+    <!-- 🧾 Tipo de Comprobante -->
+    <div class="space-y-2">
+      <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-1">
+        Tipo
+      </label>
+
+      <select
+        [(ngModel)]="voucher.id_tipo"
+        class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl text-sm font-bold 
+               text-slate-700 dark:text-slate-200 outline-none focus:ring-2 focus:ring-primary/20">
+
+        <option value="">Seleccione</option>
+        <option *ngFor="let t of voucherTypes" [value]="t.id">
+          {{ t.nombre }}
+        </option>
+
+      </select>
+    </div>
+
+    <!-- 🔢 Número de factura -->
+    <div class="space-y-2">
+      <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-1">
+        Número
+      </label>
+
+      <input
+        type="text"
+        [(ngModel)]="voucher.numero"
+        placeholder="Ej: FV-000123"
+        class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl text-sm font-bold 
+               text-slate-700 dark:text-slate-200 outline-none focus:ring-2 focus:ring-primary/20"/>
+    </div>
+
+    <!-- 📅 Fecha -->
+    <div class="space-y-2">
+      <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-1">
+        Fecha
+      </label>
+
+      <div class="relative group">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400">
+          calendar_today
+        </span>
+
+        <input
+          type="date"
+          [ngModel]="voucher.fecha | date:'yyyy-MM-dd'"
+          (ngModelChange)="onDateChange($event)"
+          class="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl text-sm font-bold 
+                 text-slate-700 dark:text-slate-200 outline-none focus:ring-2 focus:ring-primary/20"/>
+      </div>
+    </div>
+
+    <!-- 📝 Descripción -->
+    <div class="space-y-2 xl:col-span-2">
+      <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-1">
+        Descripción
+      </label>
+
+      <input
+        type="text"
+        [(ngModel)]="voucher.descripcion"
+        placeholder="Detalle del comprobante..."
+        class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl text-sm font-bold 
+               text-slate-700 dark:text-slate-200 outline-none focus:ring-2 focus:ring-primary/20"/>
+    </div>
+
+    <!-- 🟢 Estado -->
+    <div class="space-y-2">
+      <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-1">
+        Estado
+      </label>
+      <select
+        [(ngModel)]="voucher.estado"
+        class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl text-sm font-bold 
+               text-slate-700 dark:text-slate-200 outline-none focus:ring-2 focus:ring-primary/20">
+        <option value="BORRADOR">Borrador</option>
+        <option value="CONTABILIZADO">Contabilizado</option>
+        <option value="ANULADO">Anulado</option>
+      </select>
+    </div>
+  </div>
+</div>
