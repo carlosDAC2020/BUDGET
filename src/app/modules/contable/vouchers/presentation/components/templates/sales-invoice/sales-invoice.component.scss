@@ -1,0 +1,164 @@
+@page {
+  size: letter;
+  margin: 10mm;
+}
+
+.factura {
+
+  width: 100%;
+  min-height: auto;
+  padding: 0;
+  margin: 0;
+  background: white;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+}
+
+.empresa {
+  display: flex;
+  gap: 15px;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+}
+
+.factura-info {
+  text-align: right;
+}
+
+.box {
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.cliente-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.detalle {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.detalle th,
+.detalle td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.detalle th {
+  background: #f5f5f5;
+}
+
+.totales {
+  width: 300px;
+  margin-left: auto;
+  margin-top: 30px;
+}
+
+.total-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.grand-total {
+  background: black;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media print {
+
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    background: white !important;
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .factura {
+    width: 100%;
+    box-shadow: none !important;
+    overflow: hidden;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+.no-print {
+
+  @media print {
+    display: none;
+  }
+
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      135deg,
+      #f59e0b,
+      #d97706
+    );
+
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  cursor: pointer;
+  transition: all .25s ease;
+  box-shadow:
+    0 10px 25px rgba(245,158,11,.25);
+
+}
+
+.print-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 15px 30px rgba(245,158,11,.35);
+}
+
+.print-btn:active {
+  transform: scale(.98);
+}
+
+.print-btn .material-symbols-outlined {
+  font-size: 20px;
+}

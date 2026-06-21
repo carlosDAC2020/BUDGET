@@ -1,0 +1,145 @@
+<!-- sales-invoice.component.html -->
+
+<div *ngIf="data as invoice">
+  <!-- ACTIONS -->
+  <div class="actions no-print">
+    <button
+      type="button"
+      ngxPrint
+      printSectionId="factura-print"
+      [useExistingCss]="true"
+      class="print-btn">
+      <span class="material-symbols-outlined">
+        print
+      </span>
+      <span>
+        Imprimir
+      </span>
+    </button>
+  </div>
+  <!-- FACTURA -->
+  <div id="factura-print" class="factura">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="empresa">
+        <img
+          src="assets/logo.png"
+          class="logo"
+          alt="Logo Empresa">
+        <div>
+          <h1>
+            MI EMPRESA SAS
+          </h1>
+          <p>NIT: 900123456</p>
+          <p>Cartagena - Colombia</p>
+          <p>3001234567</p>
+        </div>
+      </div>
+      <div class="factura-info">
+        <h2>FACTURA DE VENTA</h2>
+        <div class="box">
+          <p>
+            <strong>No:</strong>
+            {{ invoice.numero }}
+          </p>
+          <p>
+            <strong>Fecha:</strong>
+            {{ invoice.fecha | date:'dd/MM/yyyy' }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIENTE -->
+    <div class="section">
+      <h3>CLIENTE</h3>
+      <div class="cliente-grid">
+        <div>
+          <strong>Nombre:</strong>
+          {{ invoice.cliente?.nombre }}
+        </div>
+        <div>
+          <strong>Documento:</strong>
+          {{ invoice.cliente?.documento }}
+        </div>
+        <div>
+          <strong>Dirección:</strong>
+          {{ invoice.cliente?.direccion }}
+        </div>
+        <div>
+          <strong>Teléfono:</strong>
+          {{ invoice.cliente?.telefono }}
+        </div>
+      </div>
+    </div>
+
+    <!-- DETALLE -->
+    <table class="detalle">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let item of invoice.detalle;
+            trackBy: trackByIndex
+          ">
+          <td>
+            {{ item.descripcion }}
+          </td>
+          <td>
+            {{ item.cantidad }}
+          </td>
+          <td>
+            {{
+              item.precio
+              | currency:'COP ':'symbol':'1.0-0'
+            }}
+          </td>
+          <td>
+            {{
+              item.total
+              | currency:'COP ':'symbol':'1.0-0'
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- TOTALES -->
+    <div class="totales">
+      <div class="total-item">
+        <span>Subtotal:</span>
+        <span>
+          {{
+            invoice.subtotal
+            | currency:'COP ':'symbol':'1.0-0'
+          }}
+        </span>
+      </div>
+      <div class="total-item">
+        <span>IVA:</span>
+        <span>
+          {{
+            invoice.iva
+            | currency:'COP ':'symbol':'1.0-0'
+          }}
+        </span>
+      </div>
+      <div class="total-item grand-total">
+        <span>TOTAL:</span>
+        <span>
+          {{
+            invoice.total
+            | currency:'COP ':'symbol':'1.0-0'
+          }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>

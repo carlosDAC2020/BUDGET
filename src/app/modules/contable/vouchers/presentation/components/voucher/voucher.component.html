@@ -1,0 +1,395 @@
+<div class="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+  <form *ngIf="form" [formGroup]="form" class="flex flex-col gap-8">
+
+    <!-- 🔝 TOP BAR -->
+    <div class="flex flex-wrap items-center justify-between gap-6 p-4 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl border border-white/60 dark:border-slate-700/60 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end flex-1">
+        <ng-container *ngFor="let field of getSection('header')">
+          <ng-container *ngIf="!field.hidden">
+            <div class="space-y-2" [ngClass]="'md:col-span-' + (field.colSpan || 1)">
+              <div *ngIf="field.type === 'text'" class="flex flex-col min-w-[180px]">
+                <label class="text-[10px] font-black uppercase text-slate-400">
+                  {{ field.label }}
+                </label>
+                <input type="text" [formControlName]="field.name"
+                  class="px-3 py-2 bg-white dark:bg-slate-800 rounded-xl text-sm font-bold focus:ring-2 focus:ring-amber-500/20 outline-none"/>
+              </div>
+              <div *ngIf="field.type === 'date'" class="flex flex-col">
+                <label class="text-[10px] font-black uppercase text-slate-400">
+                  {{ field.label }}
+                </label>
+                <input type="date" [formControlName]="field.name"
+                  class="px-3 py-2 bg-white dark:bg-slate-800 rounded-xl text-sm font-bold"/>
+              </div>
+              <div *ngIf="field.type === 'select'" class="flex flex-col min-w-[160px]">
+                <label class="text-[10px] font-black uppercase text-slate-400">
+                  {{ field.label }}
+                </label>
+                <select [formControlName]="field.name"
+                  class="px-3 py-2 bg-white dark:bg-slate-800 rounded-xl text-sm font-bold">
+                  <option value="">Seleccione</option>
+                  <option *ngFor="let opt of field.options || []" [value]="opt.value">
+                    {{ opt.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="space-y-8">
+      <!-- DETAIL + BALANCE -->
+      <div class="grid grid-cols-1 xl:grid-cols-4 gap-8">
+        <!-- DETAIL -->
+        <div class="xl:col-span-3">
+          <!-- PEGA AQUÍ TU BLOQUE DETAIL COMPLETO -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <ng-container *ngFor="let field of getSection('detail')">
+                <div *ngIf="!field.hidden" [ngClass]="'md:col-span-' + (field.colSpan || 1)" class="space-y-2">
+                    <label class="text-[10px] font-black uppercase text-slate-400">
+                      {{ field.label }}
+                    </label>
+
+                    <input *ngIf="field.type === 'text'"
+                      type="text"
+                      [formControlName]="field.name"
+                      class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl text-sm font-bold"/>
+
+                    <input *ngIf="field.type === 'date'"
+                      type="date"
+                      [formControlName]="field.name"
+                      class="w-full px-3 py-2 bg-white dark:bg-slate-800 rounded-xl text-sm font-bold"/>
+
+                    <select *ngIf="field.type === 'select'"
+                      [formControlName]="field.name"
+                      class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl text-sm font-bold">
+                      <option value="">Seleccione</option>
+                      <option *ngFor="let party of (parties$ | async) ?? []" 
+                        [value]="party.id_tercero">
+                          {{ party.nombre }}
+                        </option>
+                    </select>
+                </div>
+              </ng-container>
+          </div>
+        </div>
+
+        <!-- BALANCE -->
+        <div>
+          <!-- PEGA AQUÍ TU BLOQUE BALANCE CONTABLE COMPLETO -->
+          <div class="bg-slate-900 dark:bg-black text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden group">
+                    <div class="relative z-10 space-y-6">
+                        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Balance Contable</h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="font-medium text-slate-400">Total Débitos</span>
+                                <span class="font-black">{{ totalDebito | currency:'COP' }}</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="font-medium text-slate-400">Total Créditos</span>
+                                <span class="font-black">{{ totalCredito | currency:'COP' }}</span>
+                            </div>
+                            <div class="h-px bg-white/10 my-2"></div>
+                            <div class="flex justify-between items-end">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-emerald-500">Diferencia</span>
+                                    <span class="text-3xl font-black tracking-tighter leading-none">{{ diferencia | currency:'COP' }}</span>
+                                </div>
+                                <span class="material-symbols-outlined text-emerald-500 text-4xl">task_alt</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -right-10 -bottom-10 size-48 bg-amber-500/5 rounded-full blur-3xl group-hover:bg-amber-500/10 transition-all duration-700"></div>
+                </div>
+          </div>
+        </div>
+
+      <!-- ASIENTOS -->
+      <div>
+        <!-- PEGA AQUÍ TODO EL BLOQUE ASIENTOS COMPLETO -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <!-- HEADER -->
+          <div class="p-4 border-b flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-amber-600">account_tree</span>
+                <h4 class="font-black text-lg text-slate-900 dark:text-white tracking-tight">Asiento Contable</h4>
+            </div>
+
+            <button type="button"
+                    (click)="addAsiento()"
+                    class="px-4 py-2 bg-amber-500/10 text-amber-600 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-amber-500 hover:text-white transition-all shadow-sm">
+              + Añadir
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+          <!-- LABELS -->
+              <div
+                class="grid
+                      grid-cols-[40px_2fr_3fr_2fr_2fr_1fr_1fr_1fr_50px]
+                      gap-2
+                      px-4 py-2
+                      text-[10px]
+                      font-black
+                      uppercase
+                      text-slate-400
+                      border-b
+                      bg-slate-50
+                      dark:bg-slate-800/30">
+
+                <div class="text-center">#</div>
+                <div>Cuenta</div>
+                <div>Concepto</div>
+                <div>Tercero</div>
+                <div>Centro</div>
+                <div class="text-right">Débito</div>
+                <div class="text-right">Crédito</div>
+                <div>Interés</div>
+                <div class="text-center">Acc</div>
+              </div>
+
+              <!-- FILAS -->
+              <div formArrayName="asientos">
+                <div
+                  *ngFor="let item of paginatedAsientos; trackBy: trackByIndex"
+                  [formGroup]="item.control"
+                  class="grid
+                        grid-cols-[40px_2fr_3fr_2fr_2fr_1fr_1fr_1fr_50px]
+                        gap-2
+                        px-4 py-2
+                        items-center
+                        bg-slate-100
+                        dark:bg-slate-800/50
+                        hover:bg-slate-200
+                        dark:hover:bg-slate-700
+                        transition">
+
+                  <!-- # -->
+                  <div class="text-center text-xs font-bold text-slate-500">
+                    {{ item.index + 1 }}
+                  </div>
+
+                  <!-- Cuenta -->
+                  <div class="relative w-full min-w-0">
+                    <input
+                      formControlName="cuenta"
+                      class="input w-full"
+                      placeholder="Buscar cuenta..."
+                      (focus)="showAccountDropdown[item.index] = true">
+
+                    <div
+                      *ngIf="showAccountDropdown[item.index]"
+                      class="absolute left-0 top-full z-30 w-full
+                            bg-white border rounded-lg shadow-lg
+                            max-h-48 overflow-auto">
+
+                      <div
+                        *ngFor="let account of filterAccounts(item.index)"
+                        (click)="selectAccount(item.index, account)"
+                        class="px-3 py-2 hover:bg-slate-100 cursor-pointer text-sm">
+                        {{ account.codigo }} - {{ account.nombre }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Concepto -->
+                  <input
+                    formControlName="concepto"
+                    class="input w-full min-w-0" />
+
+                  <!-- Tercero -->
+                  <div class="relative w-full min-w-0">
+                    <input
+                      formControlName="tercero"
+                      class="input w-full"
+                      placeholder="Buscar tercero..."
+                      (focus)="showPartyDropdown[item.index] = true">
+
+                    <div
+                      *ngIf="showPartyDropdown[item.index]"
+                      class="absolute left-0 top-full z-30 w-full
+                            bg-white border rounded-lg shadow-lg
+                            max-h-48 overflow-auto">
+
+                      <div
+                        *ngFor="let party of filterParties(item.index)"
+                        (click)="selectParty(item.index, party)"
+                        class="px-3 py-2 hover:bg-slate-100 cursor-pointer text-sm">
+                        {{ party.numero_documento }} - {{ party.nombre }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Centro -->
+                  <div class="relative w-full min-w-0">
+                    <input
+                      formControlName="centro"
+                      class="input w-full"
+                      placeholder="Buscar centro..."
+                      (focus)="showCenterDropdown[item.index] = true">
+
+                    <div
+                      *ngIf="showCenterDropdown[item.index]"
+                      class="absolute left-0 top-full z-30 w-full
+                            bg-white border rounded-lg shadow-lg
+                            max-h-48 overflow-auto">
+
+                      <div
+                        *ngFor="let center of filterCenters(item.index)"
+                        (click)="selectCenter(item.index, center)"
+                        class="px-3 py-2 hover:bg-slate-100 cursor-pointer text-sm">
+                        {{ center.nombre }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Débito -->
+                  <input
+                    formControlName="debito"
+                    class="input w-full text-right"
+                    (focus)="unformat(item.index, 'debito')"
+                    (blur)="formatMoney(item.index, 'debito')" />
+
+                  <!-- Crédito -->
+                  <input
+                    formControlName="credito"
+                    class="input w-full text-right"
+                    (focus)="unformat(item.index, 'credito')"
+                    (blur)="formatMoney(item.index, 'credito')" />
+
+                  <!-- Interés -->
+                  <input
+                    formControlName="interes"
+                    class="input w-full" />
+
+                  <!-- Acciones -->
+                  <div class="flex justify-center">
+                    <button
+                      type="button"
+                      (click)="removeAsiento(item.index)"
+                      class="text-slate-300 hover:text-red-500">
+                      🗑
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <!-- Paginacion -->
+          <div class="flex justify-center items-center py-2 text-xs text-slate-400 gap-3">
+              <!-- Prev -->
+              <button
+                (click)="prevPage()"
+                [disabled]="page === 1"
+                class="px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-30 transition">
+                &lt;&lt;
+              </button>
+
+              <!-- Página -->
+              <span class="font-bold text-slate-600 dark:text-slate-300">
+                {{ page }}
+              </span>
+
+              <!-- Next -->
+              <button
+                (click)="nextPage()"
+                [disabled]="page === totalPages"
+                class="px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-30 transition">
+                &gt;&gt;
+              </button>
+          </div>
+        </div> 
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <!-- MAIN ACTIONS -->
+        <div>
+          <div class="grid grid-cols-2 gap-4">
+                    <button (click)="save()" class="flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all group shadow-sm">
+                        <span class="material-symbols-outlined text-amber-600 mb-2 group-hover:scale-110 transition-transform">save</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Guardar</span>
+                    </button>
+                    <button (click)="print()" 
+                            ngxPrint
+                            printSectionId="voucher-preview"
+                            class="flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all group shadow-sm">
+                        <span class="material-symbols-outlined text-amber-600 mb-2 group-hover:scale-110 transition-transform">print</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Imprimir</span>
+                    </button>
+                    <button (click)="search()" class="flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all group shadow-sm">
+                        <span class="material-symbols-outlined text-amber-600 mb-2 group-hover:scale-110 transition-transform">search</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Buscar</span>
+                    </button>
+                    <button class="flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all group shadow-sm">
+                        <span class="material-symbols-outlined text-amber-600 mb-2 group-hover:scale-110 transition-transform">content_copy</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Copiar</span>
+                    </button>
+              </div>
+        </div>
+
+        <!-- SECONDARY ACTIONS -->
+        <div>
+                <div class="bg-slate-100/50 dark:bg-slate-800/30 p-2 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
+                    <button class="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-white dark:hover:bg-slate-700 text-xs font-bold text-slate-500 transition-all">
+                        Estado de Cuenta Proveedor <span class="material-symbols-outlined !text-sm">arrow_forward</span>
+                    </button>
+                    <button class="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-white dark:hover:bg-slate-700 text-xs font-bold text-slate-500 transition-all">
+                        Exportar a Excel <span class="material-symbols-outlined !text-sm text-emerald-600">table_view</span>
+                    </button>
+                    <button class="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/10 text-xs font-bold text-slate-500 transition-all">
+                        Eliminar Factura <span class="material-symbols-outlined !text-sm">delete_forever</span>
+                    </button>
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div
+      *ngIf="showPreviewModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+      <!-- MODAL -->
+      <div
+        class="relative w-[95%] max-w-6xl h-[95vh] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+        <!-- HEADER -->
+        <div
+          class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-amber-600">
+              receipt_long
+            </span>
+            <h2 class="font-black text-lg">
+              Vista previa comprobante
+            </h2>
+          </div>
+          <button
+            type="button"
+            (click)="closePreviewModal()"
+            class="size-10 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center">
+            <span class="material-symbols-outlined">
+              close
+            </span>
+          </button>
+        </div>
+        <!-- BODY -->
+        <div
+          class="flex-1 overflow-auto bg-slate-100 dark:bg-slate-950 p-8">
+          <div class="flex justify-center">
+            <div class="preview-scale">
+              <div
+                id="voucher-preview"
+                class="letter-sheet">
+                <ng-container #container></ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-voucher-list-modal *ngIf="showVoucherListModal" (close)="closeSearchModal()"></app-voucher-list-modal>
+  </form>
+</div>

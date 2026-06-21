@@ -1,0 +1,288 @@
+<!-- BACKDROP -->
+
+<div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6">
+
+    <!-- MODAL -->
+
+    <div
+        class="w-full max-w-7xl h-[90vh] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-200 dark:border-slate-800">
+
+        <!-- HEADER -->
+
+        <div class="flex items-center justify-between px-8 py-5 border-b border-slate-200 dark:border-slate-800">
+
+            <div class="flex items-center gap-4">
+
+                <div class="size-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center">
+
+                    <span class="material-symbols-outlined">
+                        receipt_long
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <h2 class="text-xl font-black text-slate-900 dark:text-white">
+                        Comprobantes
+                    </h2>
+
+                    <p class="text-sm text-slate-500">
+                        Consulta y administración de comprobantes
+                    </p>
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                (click)="closeModal()"
+                class="size-11 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-all">
+
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+
+            </button>
+
+        </div>
+
+        <!-- FILTERS -->
+
+        <div class="p-6 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/30">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+                <!-- ID -->
+
+                <div class="space-y-2">
+
+                    <label class="text-[10px] uppercase tracking-widest font-black text-slate-400">
+
+                        ID Comprobante
+
+                    </label>
+
+                    <input type="text" placeholder="Buscar..."
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm outline-none focus:ring-4 focus:ring-amber-500/10" />
+
+                </div>
+
+                <!-- FACTURA -->
+
+                <div class="space-y-2">
+
+                    <label class="text-[10px] uppercase tracking-widest font-black text-slate-400">
+
+                        Factura Externa
+
+                    </label>
+
+                    <input type="text" placeholder="FV-001..."
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm outline-none focus:ring-4 focus:ring-amber-500/10" />
+
+                </div>
+
+                <!-- TIPO -->
+
+                <div class="space-y-2">
+
+                    <label class="text-[10px] uppercase tracking-widest font-black text-slate-400">
+
+                        Tipo Comprobante
+
+                    </label>
+
+                    <select
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm outline-none">
+
+                        <option value="">
+                            Todos
+                        </option>
+
+                        <option value="FV">
+                            Factura Venta
+                        </option>
+
+                        <option value="RC">
+                            Recibo Caja
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- ESTADO -->
+
+                <div class="space-y-2">
+
+                    <label class="text-[10px] uppercase tracking-widest font-black text-slate-400">
+
+                        Estado
+
+                    </label>
+
+                    <select
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm outline-none">
+
+                        <option value="">
+                            Todos
+                        </option>
+
+                        <option value="BORRADOR">
+                            BORRADOR
+                        </option>
+
+                        <option value="APROBADO">
+                            APROBADO
+                        </option>
+
+                        <option value="ANULADO">
+                            ANULADO
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="flex-1 overflow-auto">
+
+            <table class="w-full">
+
+                <!-- HEAD -->
+
+                <thead
+                    class="sticky top-0 z-10 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+
+                    <tr class="text-left text-[11px] uppercase tracking-widest text-slate-500">
+
+                        <th class="px-6 py-4 font-black">
+                            Comprobante #
+                        </th>
+
+                        <th class="px-6 py-4 font-black">
+                            Tipo Comprobante
+                        </th>
+
+                        <th class="px-6 py-4 font-black">
+                            Factura Ext
+                        </th>
+
+                        <th class="px-6 py-4 font-black">
+                            Fecha Emisión
+                        </th>
+
+                        <th class="px-6 py-4 font-black">
+                            Estado
+                        </th>
+
+                        <th class="px-6 py-4 font-black text-center">
+                            Acciones
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <!-- BODY -->
+
+                <tbody>
+
+                    <tr *ngFor="let item of vouchers"
+                        class="border-b border-slate-100 dark:border-slate-800 hover:bg-amber-50/30 dark:hover:bg-slate-800/50 transition-all">
+
+                        <!-- COMPROBANTE -->
+
+                        <td class="px-6 py-4">
+
+                            <div class="font-black text-slate-900 dark:text-white">
+                                {{ item.numero }}
+                            </div>
+
+                        </td>
+
+                        <!-- TIPO -->
+
+                        <td class="px-6 py-4 text-sm">
+                            {{ item.tipo_comprobante }}
+                        </td>
+
+                        <!-- FACTURA -->
+
+                        <td class="px-6 py-4 text-sm">
+                            {{ item.factura_externa }}
+                        </td>
+
+                        <!-- FECHA -->
+
+                        <td class="px-6 py-4 text-sm">
+                            {{ item.fecha }}
+                        </td>
+
+                        <!-- ESTADO -->
+
+                        <td class="px-6 py-4">
+
+                            <span class="px-3 py-1 rounded-full text-[10px] font-black tracking-widest" [ngClass]="{
+                  'bg-amber-500/10 text-amber-600':
+                    item.estado === 'BORRADOR',
+
+                  'bg-emerald-500/10 text-emerald-600':
+                    item.estado === 'APROBADO',
+
+                  'bg-red-500/10 text-red-600':
+                    item.estado === 'ANULADO'
+                }">
+
+                                {{ item.estado }}
+
+                            </span>
+
+                        </td>
+
+                        <!-- ACCIONES -->
+
+                        <td class="px-6 py-4">
+
+                            <div class="flex items-center justify-center gap-2">
+
+                                <button
+                                    class="size-10 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center">
+
+                                    <span class="material-symbols-outlined text-slate-500">
+                                        visibility
+                                    </span>
+
+                                </button>
+
+                                <button
+                                    class="size-10 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center">
+
+                                    <span class="material-symbols-outlined text-slate-500">
+                                        print
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

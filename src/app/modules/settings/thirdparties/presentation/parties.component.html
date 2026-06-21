@@ -1,0 +1,267 @@
+<!-- HEADER -->
+<div class="flex justify-between items-center mt-4">
+  <h1 class="text-xl font-bold text-slate-800 dark:text-slate-200">
+    Terceros
+  </h1>
+
+  <button 
+    (click)="openModal()"
+    class="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 
+    hover:scale-[1.03] active:scale-95 transition-all">
+    
+    <span class="material-symbols-outlined text-[20px]">add</span>
+    Nuevo Tercero
+  </button>
+</div>
+
+<!-- TABLA -->
+<div class="flex justify-center mt-6">
+  <div class="w-full max-w-6xl bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+
+    <!-- HEADER TABLA -->
+    <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">
+        Listado de Terceros
+      </h3>
+    </div>
+
+    <!-- TABLE -->
+    <div class="overflow-x-auto">
+
+      <ng-container *ngIf="parties$ | async as parties">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+            <tr>
+              <th class="text-left px-6 py-3">Tipo Documento</th>
+              <th class="text-left px-6 py-3">Número Documento</th>
+              <th class="text-left px-6 py-3">Nombre</th>
+              <th class="text-left px-6 py-3">Dirección</th>
+              <th class="text-left px-6 py-3">Teléfono</th>
+              <th class="text-right px-6 py-3">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+
+            <tr *ngFor="let party of parties"
+                class="hover:bg-slate-50 dark:hover:bg-slate-800">
+
+              <td class="px-6 py-3 font-mono">{{ party.tipo_documento }}</td>
+              <td class="px-6 py-3">{{ party.numero_documento }}</td>
+              <td class="px-6 py-3">{{ party.nombre }}</td>
+              <td class="px-6 py-3">{{ party.direccion }}</td>
+              <td class="px-6 py-3">{{ party.telefono }}</td>
+              <td class="px-6 py-3">
+                <span class="px-2 py-1 rounded-full text-xs font-bold"
+                  [ngClass]="party.is_active 
+                    ? 'bg-green-100 text-green-700' 
+                    : 'bg-slate-200 text-slate-500'">
+                  {{ party.is_active ? 'Activo' : 'Inactivo' }}
+                </span>
+              </td>
+
+              <td class="px-6 py-3 text-right">
+                <div class="flex justify-end gap-2">
+
+                  <button 
+                    (click)="editParties(party)"
+                    class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-primary/10">
+                    <span class="material-symbols-outlined text-[18px] text-primary">edit</span>
+                  </button>
+
+                  <button 
+                    (click)="toggleStatus(party)"
+                    class="p-2 rounded-lg"
+                    [ngClass]="party.is_active ? 'bg-green-100' : 'bg-red-100'">
+
+                    <span class="material-symbols-outlined text-[18px]" 
+                      [ngClass]="party.is_active ? 'text-green-700' : 'text-red-700'">
+                      {{ party.is_active ? 'toggle_on' : 'toggle_off' }}  
+                    </span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- ✅ EMPTY STATE CORRECTO -->
+            <tr *ngIf="parties.length === 0">
+              <td colspan="6" class="text-center py-10 text-slate-500">
+                No hay terceros registrados
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div *ngIf="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+
+  <!-- BACKDROP -->
+  <div 
+    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+    (click)="closeModal()">
+  </div>
+
+  <!-- MODAL CONTENT -->
+  <div class="relative w-full max-w-lg mx-4 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-fadeIn">
+
+    <!-- HEADER -->
+    <div class="bg-primary px-6 py-4 flex justify-between items-center">
+      <h2 class="text-white font-bold text-lg flex items-center gap-2">
+        <span class="material-symbols-outlined !text-[20px]">calendar_month</span>
+        {{ isEdit ? 'Editar Tercero' : 'Nuevo Tercero' }}
+      </h2>
+      <button (click)="closeModal()" class="text-white hover:opacity-70">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <form *ngIf="form" [formGroup]="form" class="p-6 space-y-5">
+
+      <!-- Tipo Documento + Número Documento -->
+      <div class="grid grid-cols-2 gap-4">
+
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+            Tipo Documento
+          </label>
+
+          <select
+            formControlName="tipo_documento"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+
+            <option value="">Seleccione</option>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="CE">Cédula de Extranjería</option>
+            <option value="NIT">NIT</option>
+            <option value="PAS">Pasaporte</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+            Número Documento
+          </label>
+
+          <input
+            type="text"
+            formControlName="numero_documento"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+        </div>
+
+      </div>
+
+      <!-- Nombre -->
+      <div class="space-y-1">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          Nombre o Razón Social
+        </label>
+
+        <input
+          type="text"
+          formControlName="nombre"
+          class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+      </div>
+
+      <!-- Dirección -->
+      <div class="space-y-1">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          Dirección
+        </label>
+
+        <input
+          type="text"
+          formControlName="direccion"
+          class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+      </div>
+
+      <!-- Teléfono + Email -->
+      <div class="grid grid-cols-2 gap-4">
+
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+            Teléfono
+          </label>
+
+          <input
+            type="text"
+            formControlName="telefono"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+            Correo Electrónico
+          </label>
+
+          <input
+            type="email"
+            formControlName="email"
+            class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+        </div>
+
+      </div>
+
+      <!-- Estado -->
+      <div class="flex items-center justify-between pt-2">
+
+        <div>
+          <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+            Activo
+          </span>
+
+          <p class="text-xs text-slate-500">
+            Habilitar o deshabilitar el tercero
+          </p>
+        </div>
+
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input
+            type="checkbox"
+            formControlName="is_active"
+            class="sr-only peer">
+
+          <div
+            class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700
+            peer-checked:after:translate-x-full peer-checked:after:border-white
+            after:content-[''] after:absolute after:top-[2px] after:left-[2px]
+            after:bg-white after:border-gray-300 after:border after:rounded-full
+            after:h-5 after:w-5 after:transition-all dark:border-gray-600
+            peer-checked:bg-primary">
+          </div>
+        </label>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="flex justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+
+        <button
+          type="button"
+          (click)="closeModal()"
+          class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold">
+          Cancelar
+        </button>
+
+        <button
+          type="button"
+          (click)="save(form.getRawValue())"
+          [disabled]="form.invalid || isSaving"
+          class="px-4 py-2 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 disabled:opacity-50">
+
+          {{ isSaving
+              ? (isEdit ? 'Actualizando...' : 'Creando...')
+              : (isEdit ? 'Actualizar' : 'Crear')
+          }}
+
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
