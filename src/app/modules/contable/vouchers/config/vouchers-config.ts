@@ -6,8 +6,8 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', required: false, hidden: true},
-        { name: 'id_periodo', label: 'Periodo', type: 'select', required: false, hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', defaultValue: 4, required: false, hidden: true},
+        { name: 'id_periodo', label: 'Periodo', type: 'select',defaultValue: 1, required: false, hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'pendiente', options: [{ label: 'Pendiente', value: 'pendiente' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
     },
@@ -16,7 +16,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'FV - ',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'FV - ',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', required: true, colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },
@@ -29,7 +29,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', hidden: true},
         { name: 'id_periodo', label: 'Periodo', type: 'select', hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'pendiente', options: [{ label: 'Pendiente', value: 'pendiente' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
@@ -39,7 +39,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'FC - ',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'FC - ',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', required: true, colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },
@@ -52,7 +52,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
         { name: 'id_periodo', label: 'Periodo', type: 'select', required: true, hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'pendiente', options: [{ label: 'Pendiente', value: 'pendiente' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
@@ -62,7 +62,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'NO - ',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'NO - ',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', required: true, colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },
@@ -75,7 +75,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
         { name: 'id_periodo', label: 'Periodo', type: 'select', required: true, hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'pendiente', options: [{ label: 'Pendiente', value: 'pendiente' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
@@ -85,7 +85,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'RC - ',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'RC - ',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', required: true, colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },
@@ -98,7 +98,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
         { name: 'id_periodo', label: 'Periodo', type: 'select', required: true, hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'crear', options: [{ label: 'Crear', value: 'crear' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
@@ -108,7 +108,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'CE - ',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'CE - ',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', required: true, colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },
@@ -121,7 +121,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
         { name: 'id_periodo', label: 'Periodo', type: 'select', required: true, hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'pendiente', options: [{ label: 'Pendiente', value: 'pendiente' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
@@ -131,7 +131,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'CB - ',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'CB - ',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', required: true, colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },
@@ -144,7 +144,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', required: true, hidden: true},
         { name: 'id_periodo', label: 'Periodo', type: 'select', required: true, hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'pendiente', options: [{ label: 'Pendiente', value: 'pendiente' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
@@ -154,7 +154,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'NC - ',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'NC - ',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', required: true, colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },
@@ -167,7 +167,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
     {
       section: 'header',
       fields: [
-        { name: 'id_tipo', label: 'Tipo de Comprobante', type: 'select', hidden: true},
+        { name: 'tipo', label: 'Tipo de Comprobante', type: 'select', hidden: true},
         { name: 'id_periodo', label: 'Periodo', type: 'select', hidden: true},
         { name: 'estado', label: 'Estado', type: 'select', required: true,defaultValue: 'crear', options: [{ label: 'Crear', value: 'crear' },{ label: 'Aprobado', value: 'aprobado' } ], colSpan: 1},
       ]
@@ -177,7 +177,7 @@ export const PRODUCT_CONFIG: Record<VoucherType, SectionConfig[]> = {
       fields: [
         { name: 'fecha_contable', label: 'Fecha Emisión', type: 'date', required: true},
         { name: 'compania', label: 'Empresa', type: 'text', required: true, colSpan: 2 },
-        { name: 'numeroExterno', label: 'Doc. Ext No.', type: 'text', defaultValue: 'FV-',required: true, colSpan: 1 },
+        { name: 'numero_ext', label: 'Doc. Ext No.', type: 'text', defaultValue: 'FV-',required: true, colSpan: 1 },
         { name: 'tercero', label: 'Proveedor', type: 'select', colSpan: 1 },
         { name: 'direccion', label: 'Dirección', type: 'text', required: true, colSpan: 2 },
         { name: 'telefono', label: 'Teléfono', type: 'text', required: false, colSpan: 1 },

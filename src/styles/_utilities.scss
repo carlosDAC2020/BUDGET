@@ -1,0 +1,20 @@
+.shadow-card{
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.06);
+}
+
+.shadow-hover{
+    transition:.25s;
+}
+
+.shadow-hover:hover{
+    transform:translateY(-4px);
+}
+
+.bg-brand-gradient{
+    background:linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+}

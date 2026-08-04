@@ -144,10 +144,10 @@ export class VoucherComponent implements OnInit {
   addAsiento() {
   for (let i = 0; i < this.pageSize; i++) {
     const asiento: FormGroup = this.fb.group({
-      cuenta: [''],
+      cuenta: [],
       concepto: [''],
-      tercero: [''],
-      centro: [''],
+      tercero: [],
+      centro: [],
       debito: [0],
       credito: [0],
       interes: ['']
@@ -169,7 +169,7 @@ export class VoucherComponent implements OnInit {
     }
 
     const payload = {
-      tipoProducto: this.tipoProducto,
+      tipo_Producto: this.tipoProducto,
       ...this.form.value
     };
 
